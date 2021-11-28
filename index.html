@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="base.css">
+        
+        <link rel="icon" href="thmb.png">
+        <link rel="stylesheet" href="base.css">
+
+        <meta name="description" content="Taxi Sim 2D P5 - Web-Game : Game Menu - Index | Hosted by Github Pages | Made by Daksh Naik" />
+        <meta name="author" content="Daksh Naik" />
+        <meta name="page-topic" content="Taxi Sim 2D P5 Web-Game : Index - Information |" />
+        <meta name="topic" content="Taxi Sim 2D P5 : Index" />
+
+        <meta property="og:title" content="Taxi Sim 2D P5 - a Web Browser Game"/>
+        <meta property="og:description" content="Taxi Sim 2D P5 , a Web-Game purely created by P5.PLAY.JS and P5.DOM. | Hosted by : Github-Pages."/>
+        <!-- <meta property="og:url" content="https://daksh-naik.github.io/Package-Delivery-Sim-2D/"/> -->
+        <meta property="og:type" content="game"/>
+        <meta property="og:locale" content="en_IN" />
+        <meta property="og:image" content="thumbnailv.png"/> 
+        <meta property="og:image:width" content="600"/>
+        <meta property="og:image:height" content="350"/>
+        
+        <meta name="description" content="Taxi Sim 2D P5 : Game Menu - Index | Hosted by Github Pages | Made by Daksh Naik">
+
+    <style>
+        #playGamea ion-icon { color: var(--hotpink); }
+        .welc { height: 100vh; background-color: var(--skyblue); color: black; display: flex; justify-content: space-evenly;
+            align-items: center; flex-direction: column; padding: 20px 50px 20px 50px; text-align: center; }
+        .welc h3 { font-size: 20px; color: black; } .welc h2 { font-size: 10vh; color: black; }
+        .welc .play a { text-decoration: none; background-color: var(--hotpink); padding: 20px 40px 20px 40px; margin: 40px 20px 40px 20px;
+            color: black; box-shadow: 1px 1px 15px black; }
+        .welc .play a:hover { background-color: black; color: var(--hotpink); border-radius: 10px 10px 10px 10px }
+        .welc .read a { text-decoration: none; background-color: var(--black); color: var(--orange); padding: 10px 20px 10px 20px; }
+        .welc .read a::after { content: ' ⬇'; position: relative; opacity: 0; top: 0; right: -50px; overflow: hidden; }
+        .welc .read a:hover::after {  opacity: 1; right: 0px; } .welc .read a:hover { background-color: var(--orange); color: var(--black); }
+
+        .intro {  height: 90vh; padding: 20px; display: flex; justify-content: space-around; align-items: center; text-align: center; }
+        .intro .text { flex: 60; display: flex; justify-content: center; flex-direction: column; align-items: center;}
+        .intro .text .det { margin: 30px 0px 0px 0px; padding: 30px 30px 30px 30px; box-shadow: 1px 1px 15px rgba(255, 255, 255, 0.1); 
+            background-color: var(--hotpink); color: black; width: max-content; border-radius: 10%; overflow: hidden; }
+        .intro .text .det::after { content: " ⇩"; opacity: 0;  }
+        .intro .text .det:hover { text-decoration: none; background-color: rgba(0, 0, 0, 0.500); color: white; }
+        .intro .text:hover .det::after { content: " ⇩"; opacity: 1; position: relative; right: 0px; }
+        .intro .image { flex: 40; font-size: 5em; color: var(--taxiYellow); width: max-content; }
+
+        .features { text-align: center;  padding: 30px; }
+        .features .cards { margin: 30px 0px 0px 0px; display: flex; justify-content: space-evenly; align-items: center; }
+        .features .cards .card { display: flex; justify-content: space-between; align-items: center; flex-direction: column; 
+            padding: 30px 20px; height: 40vh; flex: 50; }
+        .features .cards .card h2 { color: var(--orange); border-radius: 100%; border: 1px var(--orange) solid; padding: 30px; }
+
+        .req { height: 90vh; padding: 30px; display: flex; justify-content: space-evenly; align-items: baseline; text-align: center;  }
+        .req .card { flex: 30; border-radius: 20px 20px 50px 50px; display: flex; justify-content: center; align-items: center;
+            flex-direction: column; padding: 30px 10px 30px 10px; }
+        .req .card:hover { background-color: rgba(255, 255, 255, 0.03); box-shadow: inset -2px 3px 5px 0px rgba(128, 128, 128, 0.151) }
+        .req .card h2 { font-size: 30px; background-color: var(--skyblue); border-radius: 100%; padding: 30px; color: black; }
+        .req .card ion-icon { color: black; }
+
+        .infor { padding: 30px 320px 30px 60px; }
+
+        .screenshort { margin: 30px 10px 30px 10px; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+        .screenshort img { width: max-content; }
+
+        .playAr { height: 100vh; padding: 30px 40px 30px 40px; background-color: var(--taxiYellow); color: black; text-align: center;
+            display: flex; justify-content: space-evenly; align-items: center; flex-direction: column; }
+        .playAr h2 { color: black; font-size: 10vh; } .playAr h3 { color: black; } .playAr p { color: black; }
+        .playAr .butArea { padding: 10px; color: black; }
+        .playAr a { text-decoration: none; color: black; }
+        .playAr .button { background-color: var(--orange); padding: 20px 40px; border-radius: 20px; 
+            box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.500); font-weight: bold; border: 2px var(--orange) solid; }
+        .playAr .button::after { content: ' 🚖'; position: relative; opacity: 0; }
+        .playAr .button:hover::after { opacity: 1; }
+        .playAr .button::before { content: '🚖 '; position: relative; opacity: 0; }
+        .playAr .button:hover::before { opacity: 1; }
+        .playAr .button:hover { background-color: rgba(255, 255, 255, 0.3); font-size: 35px; }
+
+        .tips { padding: 20px 250px 20px 50px; }
+        .tips .text { background-color: rgba(255, 255, 255, 0.03); padding: 20px; }
+
+        .credits { padding: 50vh 20px 40px 20px; background: linear-gradient(to bottom, #000000 0%, var(--orange) 40%);
+            height: calc(100vh * 2); color: black; text-align: center; display: flex; justify-content: center; 
+            align-items: center; flex-direction: column;}
+        .credits h2 { color: black; margin-top: 40px; } .credits h3 { margin-top: 30px; color: black; } .credits a { color: black; }
+        .credits .p5 { display: flex; justify-content: space-evenly; align-items: center; color: var(--hotpink); }
+        .credits .p5 a { margin: 20px 20px 0px 20px; background-color: var(--hotpink); color: black; text-decoration: none; padding: 50px; font-weight: bold; font-size: 25px; }
+        .credits .p5 a:hover { color: var(--hotpink); background-color: var(--black); }
+        .credits .advert { display: flex; justify-content: space-around; align-items: center; }
+        .credits .logo { background-color: rgba(0, 0, 0, 0.1); padding: 30px; margin-top: 30px; }
+        .credits .logo:hover { background-color: rgba(0, 0, 0, 0.500); color: var(--skyblue); border-radius: 25px; margin-top: 40px; }
+        .credits .adv { display: flex; justify-content: space-around; align-items: center; }
+
+        .introdSM { display: none; justify-content: center; align-items: center; height: 100vh; flex-direction: column;}
+        .introdSM { font-size: 10vh; }
+        .introdSM h2:nth-child(1) { color: var(--taxiYellow); }
+        .introdSM h2:nth-child(2) { color: var(--skyblue); }
+        .introdSM h2:nth-child(3) { color: var(--hotpink); }
+
+        .error { display: none; justify-content: space-evenly; align-items: center; height: 100vh; padding: 40px; background-color: var(--orange);
+            color: black; }
+        .error h2 { color: black; }
+
+        @media only screen and (max-width: 1199px) {
+            .error { display: flex; }
+            .welc { display: none; }
+            .screenshort { display: none; }
+            #images { display: none; }
+            .playAr { display: none; }
+            #Limages { display: none; }
+            #Lfinally { display: none; } #finally { display: none; }
+            #Ltips { display: none; } #tips { display: none; } .tips { display: none; }
+            .introdSM { display: flex; }
+            .impre { display: none; }
+        }
+        @media only screen and (max-width: 750px) {
+            .intro { flex-direction: column; }
+            .tips { padding: 20px; }
+        }
+        @media only screen and (max-width: 860px) {
+            .req { flex-direction: column; height: max-content; align-items: center; }
+            .infor { padding: 30px 50px 30px 60px; }
+            .credits .p5 { flex-direction: column; }
+            .error { flex-direction: column; }
+            .error ion-icon { font-size: 40vh; }
+        }
+        @media only screen and (max-width:590px) {
+            .features .cards { flex-direction: column; }
+        }
+        @media only screen and (max-width:450px) {
+            .infor { padding: 30px 10px 30px 20px; }
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="loader" id="loadFer">
+        <div class="line"></div>
+    </div>
+
+    <div class="nav">
+        <div class="ts2d">
+            <h4>TAXI Sim 2D</h4>
+        </div>
+    </div>
+
+    <div class="sidenav" id="sidnav">
+        <a id="topp" class="sidactive" href="#toppa"><span class="tooltiptext">First Intro</span><ion-icon name="information-circle-outline"></ion-icon></a>
+        <a id="intro" href="#Lintro"><span class="tooltiptext">Intro</span><ion-icon name="help-circle-outline"></ion-icon></a>
+        <a id="req" href="#Lreq"><span class="tooltiptext">Specs</span><ion-icon name="cog-outline"></ion-icon></a>
+        <a id="Details" href="#Ldetails"><span class="tooltiptext">Details</span><ion-icon name="newspaper-outline"></ion-icon></a>
+        <a href="#Limages" id="scLT"><span class="tooltiptext">Images</span><ion-icon name="images-outline"></ion-icon></a>
+        <a id="playGamea" href="#playGame" style="color: rgb(128, 255, 128); text-shadow: 1px 1px 10px black; font-size: 25px;"><span class="tooltiptext">Play the Game</span><ion-icon name="game-controller-outline"></ion-icon></a>
+        <a id="credits" href="#Lcredits"><span class="tooltiptext">Credits</span><ion-icon name="ribbon"></ion-icon></a>
+    </div>
+
+    <div class="menu">
+        <div class="toggle"><ion-icon name="reorder-three-outline"></ion-icon>
+        </div>
+        <div class="word"><p id="word"></p></div>
+        <li style="--i:0;" id="MSintro">
+            <a href="#toppa"><ion-icon name="information-circle-outline"></ion-icon></a>
+        </li>
+        <li style="--i:1;" id="MSwhat">
+            <a href="#Lintro"><ion-icon name="help-circle-outline"></ion-icon></a>
+        </li>
+        <li style="--i:2;" id="MSreq">
+            <a href="#Lreq"><ion-icon name="create-outline"></ion-icon><ion-icon name="checkmark-outline"></ion-icon></a>
+        </li>
+        <li style="--i:3;" id="MSdetails">
+            <a href="#Ldetails"><ion-icon name="newspaper-outline"></ion-icon></a>
+        </li>
+        <li style="--i:4;" id="MSimage">
+            <a href="#Limages"><ion-icon name="images-outline"></ion-icon></a>
+        </li>
+        <li style="--i:5;" id="MSgame">
+            <a href="#playGame"><ion-icon name="game-controller-outline"></ion-icon></a>
+        </li>
+        <li style="--i:6;" id="MStips">
+            <a href="#Ltips"><ion-icon name="bulb-outline"></ion-icon></a>
+        </li>
+        <li style="--i:7;" id="MSstats">
+            <a href="#Lcredits"><ion-icon name="stats-chart-outline"></ion-icon><ion-icon name="ribbon-outline"></ion-icon></a>
+        </li>
+    </div>
+
+    <div class="introdSM">
+        <h2>Taxi</h2>
+        <h2>Sim</h2>
+        <h2>2D</h2>
+    </div>
+
+    <div id="toppa" class="impre" id="Lintro">
+        <picture class="fader-anim">
+            <source type="image/avif" srcset="thumbnailv.avif" title="Overview and Legend : TAXI Sim 2D" alt="Overview and Legend : TAXI Sim 2D" />
+            <img id="ima" class="defim" src="thumbnailv.png" title="Overview and Legend : TAXI Sim 2D" alt="Overview and Legend : TAXI Sim 2D">
+        </picture>
+    </div>
+
+    <div>
+        <h2 class="scrold" id="skrld">&#8595 Scroll down &#8595</h2>
+    </div>
+
+    <div class="error">
+        <ion-icon name="warning-outline" style="color:black; font-size: 10vh;"></ion-icon>
+        <h2>I'm really sorry to say, <br>
+            Your device doesn't have enough resolution to play this game. <br>
+            (Minimum resolution 1145 PX Width)</h2>
+    </div>
+
+    <div class="welc" id="Linfo">
+        <h2>Before fastening your seatbelt,</h2>
+        <h3>It'll be better if you're introduced to this game. The information below will take up about <strong class="noteD">5 Minutes</strong>
+        of your time, I'll promise you it'll be short.</h3>
+        <div class="read"><a href="#intro">Read more</a></div>
+        <h2>OR</h2>
+        <div class="play">
+            <a href="game/index.html" target="_blank">Play Directly  ↗</a>
+        </div>
+    </div>
+
+    <h2 class="code" id="Lintro">what</h2>
+    <div class="intro" id="intro">
+        <div class="text">
+            <h2 class="taxisim2d">Sim</h2>
+            <p>TAXI Sim 2D is a Simulation - Arcade web-browser game, depicting a day in a life of a Taxi Driver. 
+                For now, this game is only available for <strong class="note">Desktop Browsers (Keyboard mandatory)</strong>
+                and for devices with <strong class="note">a minimum 1200 PX width</strong> resolutions. </p>
+            <p>As the name suggests, this <strong class="note">Game is 2D</strong>, you are provided with a Taxi and a plathera
+                of components assigned that will assist you in your journey.</p>
+            <a href="#details" class="det">VIEW IN-DEPTH DETAILS</a>
+        </div>
+        <div class="image">
+            <h2>🚖</h2>
+        </div>
+    </div>
+    <h2 class="codeend" id="intro">what</h2>
+
+    <h2 class="code" id=Lfeatures>features</h2>
+        <div class="features">
+            <h2>Why should I play?</h2>
+            <div class="cards">
+                <div class="card">
+                    <h2><ion-icon name="reorder-four-outline"></ion-icon></h2>
+                    <p>Open Controls, Map, Help tabs by pressing <kbd>H</kbd> and <kbd>N</kbd> keys</p>
+                </div>
+                <div class="card">
+                    <h2><ion-icon name="map-outline"></ion-icon></h2>
+                    <p>4 Maps, 9 Different destination drop-Offs</p>
+                </div>
+                <div class="card">
+                    <h2><ion-icon name="car-sport"></ion-icon></h2>
+                    <p>(Almost) Realistic acceleration & Traffic</p>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <h2><ion-icon name="help"></ion-icon></h2>
+                    <p>In-game Guide & Tutorial</p>
+                </div>
+                <div class="card">
+                    <h2><ion-icon name="volume-mute"></ion-icon></h2>
+                    <p>No Audio / GIF (for less loading times)</p>
+                </div>
+                <div class="card">
+                    <h2><ion-icon name="pause-circle"></ion-icon></h2>
+                    <p>Pause & Unpause anytime. Automatically pauses if you've switched tabs or if your dog is tearing your pillow off.</p>
+                </div>
+            </div>
+        </div>
+    <h2 class="codeend" id="features">features</h2>
+
+    <h2 class="code" id="Lreq">requirements</h2>
+        <div class="req">
+            <div class="card">
+                <h2>💻</h2>
+                <p>Desktop / Laptop is a must. <br> (Device must have a keyboard)</p>
+                <p>- Runs smooth on <strong class="note">Low Performance</strong> devices. <br>
+                    (However, <strong class="note">Browser Hardware Acceleration</strong> is recommended, if you need higher FPS)</p>
+            </div>
+            <div class="card">
+                <h2><ion-icon name="browsers-outline"></ion-icon></h2>
+                <p>Runs smooth on <strong class="note">Modern Browsers</strong></p>
+                <p>- <strong class="note">Google Chrome 92.0.4515.159 (64-bit)</strong> <br> Avg. 35 - 40 FPS <br> Avg. CPU Usage : 50% - 60%</p>
+                <p>- <strong class="note">Mozilla Firefox 91.0.1 (64-bit)</strong><br> Avg. 20 - 25 FPS <br> Avg. CPU Usage : 60% - 70%
+                    <br> (Not recommended)</p>
+                <p>- <strong class="note">Microsoft Edge : 92.0.902.73 (64-bit)</strong> <br> Avg. 40 - 60 FPS <br>
+                    Avg. CPU Usage : 50% - 60%</p>
+            </div><div class="card">
+                <h2><ion-icon name="cog-outline"></ion-icon></h2>
+                <p>Performance Assurance :</p>
+                <p><strong class="note">(On Integrated Graphics)</strong></p>
+                <p>- Avg. CPU Usage : 50% - 70%</p>
+                <p>- Avg. RAM Usage : 8% - 9%</p>
+                <p>- Bandwidth : 8.40 MB</p>
+            </div>
+        </div>
+    <h2 class="codeend" id="req">requirements</h2>
+
+    <h2 class="code" id="Ldetails">details</h2>
+        <div class="infor">
+            <h2>Information</h2>
+            <p>As it's 2D, the realism will lower your expectations. In raw words, you, as a Taxi Driver, have to search for fares,
+                drive upto them and drop them at their desired destination. You'll be rewarded with XP. Drop atleast 3 Fares to win the game.</p>
+            <p>To win, you'll have to keep in mind these notes :</p>
+            <p>1. Drop atleast <strong class="note">3 Fares</strong> to win the game. <br>
+               2. You have to avoid <strong class="note">crashing into Traffic</strong> and <strong class="note">reaching late.</strong></p>
+            <p>Let's be practical : In order to win this game, you'll have to <strong class="note">search a fare</strong> (enclosed
+                in circles) first. Obviously, you can't play football without a ball. Then, <strong class="note">drive up your
+                    taxi and touch the circle</strong>, you'll see information of where the fare <strong class="note">desires to go,
+                    how long the destination is, XP and the time the fare has to reach before.</strong> If you're interested, press
+                    <kbd>Y</kbd> and start your job. That's it.</p>
+            <p>No, don't assume that the map is large. The map is about <strong class="note">120,000 PX</strong> long in length, but only
+                <strong class="note">1,200 PX</strong> small in width. Yes, it's a really long strip.</p>
+            <p>You are free to pick up any Fare you want. The fares are completely randomized. For example, if you're at Point A,
+                you'll find a fare desiring to go to Point B. If you're at Point A still, you'll find a fare desiring to go to Point C. <br>
+                There are <strong class="note">9 different destination / missions</strong> in total and 4 Cities.
+            </p>
+            <p>Don't worry, there are components assigned to assist you in your journey. Keep an eye on them always.</p>
+        </div>
+    <h2 class="codeend" id="details">details</h2>
+
+    <h2 class="code" id="Limages">images</h2>
+        <div class="screenshort">
+            <h3>To get yourself familiar with the game, here are some images to get you an idea how the game is.</h3>
+            <br><br><br>
+            <h2>When in freefroam :</h2>
+            <picture>
+                <source type="image/avif" srcset="screenshotint.avif" title="Taxi Sim 2D Freeroaming : Example" />
+                <img src="screenshotint.png" title="Taxi Sim 2D Freeroaming : Example" />
+            </picture>
+            <br>
+            <h2>When in job / dropping a fare :</h2>
+            <picture>
+                <source type="image/avif" srcset="screenshotmis.avif" title="Taxi Sim 2D Mission : Example" />
+                <img src="screenshotmis.png" title="Taxi Sim 2D Mission : Example" />
+            </picture>
+        </div>
+    <h2 class="codeend" id="images">images</h2>
+
+    <h2 class="code" id="Lfinally">finally</h2>
+        <div class="playAr" id="playGame">
+                <h2>Ready to play?</h2>
+                <h3>Read the stuff in-game very well to get yourself going.</h3>
+            <div class="butArea">
+                <p>Just click & play. No installation required. Quit anytime by closing the Tab.</p>
+                <br>
+                <h2><a href="game/index.html" class="button" target="_blank">Play : Taxi Sim 2D</a></h2>
+            </div>
+        </div>
+    <h2 class="codeend" id="finally">finally</h2>
+
+    <h2 class="code" id="Ltips">tips</h2>
+        <div class="tips">
+            <div class="text">
+                <h2>Tips & Tricks</h2>
+                <p>1. Drive upon the solid line (center line) when searching for a Fare. <br>
+                   2. Take up short distance fares first. <br>
+                   3. Don't give a damn about the timer, you'll have a whole lotta time provided by every Fare. <br>
+                   4. Keep your speed below 25 PX/MS if you're a beginner. </p>
+            </div>
+        </div>
+    <h2 class="codeend" id="tips">tips</h2>
+
+    <h2 class="code" id="Lcredits">credits</h2>
+        <div class="credits">
+            <h2>Stats & Credits</h2>
+            <h3>Javascript Libraries Used : </h3>
+            <div class="p5">
+                <a href="https://p5js.org/" target="_blank" rel="norefferer">P5.JS</a>
+                <a href="https://molleindustria.github.io/p5.play/" target="_blank" rel="norefferer">P5.PLAY.JS</a>
+                <a href="http://p5js.org/download/" target="_blank" rel="noopener noreferrer">P5.DOM.MIN.JS</a>
+            </div>
+            <div class="advert">
+                <div>
+                    <h3>Image Assets made on :</h3>
+                    <div class="logo">
+                        <a href="https://support.microsoft.com/en-us/windows/get-microsoft-paint-a6b9578c-ed1c-5b09-0699-4ed8115f9aa9" 
+                            target="_blank" rel="noreferrer">MS PAINT</a>
+                    </div>
+                    <h3>Symbols and Icons by :</h3>
+                    <div class="adv">
+                        <div class="logo">
+                            <a href="http://ionic.io/ionicons" target="_blank" rel="noopener noreferrer"><ion-icon name="logo-ionic"></ion-icon> Ionicon</a>
+                        </div>
+                        <div class="logo">
+                            <a href="http://fsymbols.com/" target="_blank" rel="noopener noreferrer">FSymbols</a>
+                        </div>
+                    </div>
+                    <h3>Image Compressions</h3>
+                    <div class="logo">
+                        <a href="http://squoosh.app" target="_blank" rel="noopener noreferrer">Squoosh App</a>
+                    </div>
+                </div>
+            </div>
+            <h2>Website and Game Hosted online by : Github Pages</h2>
+        </div>
+    <h2 class="codeend" id="credits">credits</h2>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 20vh;">
+        <h3>Website, Game, Designed and Developed by : <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer">Daksh N</a></h3>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>   
+
+    <script>
+        window.onload = () => {
+            document.getElementById("loadFer").classList.add('active');
+            setTimeout(function () {
+                ima.style.top = "0px";
+                sidnav.style.left = "0px";
+            }, 700);
+            setTimeout(function() {
+            skrld.style.bottom = "100px";
+            }, 2000);
+            setTimeout(function(){
+            document.getElementById("loadFer").remove();
+            }, 2000)
+        }
+    </script>
+
+    <script>
+        window.onscroll = function() {
+            skrld.style.opacity = 0;
+        }
+    </script>
+
+    <script>
+        var toggle = document.querySelector('.toggle');
+        var menu = document.querySelector('.menu');
+        toggle.onclick = () => {
+            menu.classList.toggle('active');
+        }
+        var sel = document.querySelectorAll('.menu > li');
+        sel.onclick = () => {
+            menu.classList.remove('.active');
+        }
+    </script>
+
+    <script>
+        var wordin = document.getElementById("word");
+        var intro = document.getElementById("MSintro");
+        var what = document.getElementById("MSwhat");
+        var req = document.getElementById("MSreq");
+        var details = document.getElementById("MSdetails");
+        var image = document.getElementById("MSimage");
+        var game =  document.getElementById("MSgame");
+        var tips = document.getElementById("MStips");
+        var stats = document.getElementById("MSstats");
+
+        intro.onmouseover = () => {
+            wordin.innerHTML = "First Impression";
+        }
+        what.onmouseover = () => {
+            wordin.innerHTML = "Introduction";
+        }
+        req.onmouseover = () => {
+            wordin.innerHTML = "Requirements";
+        }
+        details.onmouseover = () => {
+            wordin.innerHTML = "Brief Details";
+        }
+        image.onmouseover = () => {
+            wordin.innerHTML = "Screenshots";
+        }
+        game.onmouseover = () => {
+            wordin.innerHTML = "Play : TAXI SIM 2D";
+        }
+        tips.onmouseover = () => {
+            wordin.innerHTML = "Tips & Tricks";
+        }
+        stats.onmouseover = () => {
+            wordin.innerHTML = "Credits & Stats";
+        }
+    </script>
+
+</body>
+</html>
