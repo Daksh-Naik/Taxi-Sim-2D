@@ -1,5 +1,5 @@
-//YOU WERE AT FURNISHING Y and N KEYDOWNS FOR FARES.
-
+//TAXI SIM 2D P5 - A WEB BROWSER GAME - SKETCH FILE
+// LAST EDIT : 29 NOV 2021
 p5.disableFriendlyErrors = true;
 
 var taxi, taxiImage, taxiCFImage, speed, menu = false, help = false;
@@ -123,6 +123,7 @@ function preload() {
 
     pedHe = loadImage("images/peds/pedhrg.png");
     pedGrsOI = loadImage("images/peds/pedGrsO.png");
+    pedGrsO2 = loadImage("images/peds/pedGrsO2.png");
 
     uparimage = loadImage("images/directions/upar.bmp");
     rightarimage = loadImage("images/directions/rightar.bmp");
@@ -142,8 +143,6 @@ function setup() {
     endS = createSprite(width/2, -120500, 1500, 10);
     iPaths.push(endS);
 
-    //Areas / Zones
-
     Greensville = createSprite(width / 2, -10000, 1300, 34000);
     Greensville.visible = false;
     vMap.push(Greensville);
@@ -159,8 +158,6 @@ function setup() {
     BernardAvenue = createSprite(width / 2, -101000, 1300, 35000);
     BernardAvenue.visible = false;
     vMap.push(BernardAvenue);
-
-    //Empty areas
 
     eArea1 = createSprite(width / 2, -31450, 1300, 14700);
     eArea1.visible = false;
@@ -242,8 +239,6 @@ function setup() {
     backGRL = createSprite(undefined, undefined, taxi.width, 50);
     backGRL.visible = false;
 
-    //Destination / drop off zones and images -------------@@
-
     GRSVground = createSprite(600, -12177, 300, 2000);
     GRSVground.addImage(destinaIm);
     GRSVground.visible = false;
@@ -304,25 +299,18 @@ function setup() {
     BRAVparkway.visible = false;
     Fdestinas.push(BRAVparkway);
 
-    //Random peds
     pedsRGroup = new Group();
-    //Fare peds
     pedsFGroup = new Group();
 
-    //Fare peds of Greensville
     FpedsGRSVGroup = new Group();
-    //Fare peds of Parkvillia
     FpedsPRKVGroup = new Group();
-    //Fare peds of Bernard Avenue 
 
     FpedsBRAVGroup = new Group();
-    //Fare peds of warkhande 
     FpedsWRKNGroup = new Group();
 
     GRSVfPedgroundGroup = new Group();
     GRSVfPedcouncilGroup = new Group();
 
-    //Fare peds to go bazaar - warkhandemq
     WRKDfPedbazaarGroup = new Group();
     WRKDfPedmarketGroup = new Group();
     WRKDfPednapalikGroup = new Group();
@@ -399,8 +387,6 @@ function draw() {
     taxi.collide(iPaths);
     taxi.collide(allLanes);
 
-    //---INTERSTATE INDUSTRIES RURAL HOUSES
-
     image(backgroundHousesL1, -240, -5000, 392, 4520);
     image(backgroundHousesL2, -240, -9600, 392, 4520);
     image(backgroundHousesL3, -240, -14300, 392, 4520);
@@ -413,8 +399,6 @@ function draw() {
     image(backgroundHousesR4, width / 2 + 50, -18300, 392, 4520);
     image(backgroundHousesR5, width / 2 + 50, -22850, 392, 4520);
 
-    //-----RURAL HOUSES
-
     image(backgroundHousesL6, -240, -44000, 392, 4520);
     image(backgroundHousesL7, -240, -48700, 392, 4520);
     image(backgroundHousesL8, -240, -53300, 392, 4520);
@@ -423,8 +407,6 @@ function draw() {
     image(backgroundHousesR7, width / 2 + 50, -48520, 392, 4520);
     image(backgroundHousesR8, width / 2 + 50, -53320, 392, 4520);
     image(backgroundHousesR9, width / 2 + 50, -57920, 392, 4520);
-
-    //-----URBANISATIONS
 
     image(backgroundcitiesL1, -240, -80000, 392, 4520);
     image(backgroundcitiesL2, -240, -84550, 392, 4520);
@@ -684,15 +666,18 @@ function draw() {
             htmlps.taxiSpeedn.style('color', 'rgb(255, 255, 255)');
             htmlps.taxiSpeednEA.style('color', 'rgb(255, 255, 255)');
             htmlps.taxiGR.html("🅿️");
+            taxi.setCollider("rectangle");
             htmlps.taxiGR.style('color', 'rgb(255, 179, 0)');
         }
         if (speed > 0) {
             htmlps.taxiGR.html("Ⓓ")
             htmlps.taxiGR.style('color', 'rgb(73, 255, 64)');
+            taxi.setCollider("rectangle", 0, 0, 35, 85);
         }
         if (speed < 0) {
             htmlps.taxiGR.html("Ⓡ");
             htmlps.taxiGR.style('color', 'rgb(255, 144, 64)');
+            taxi.setCollider("rectangle", 0, 0, 35, 85)
         }
 
         if (taxi.isTouching(Greensville)) {
@@ -721,7 +706,7 @@ function draw() {
         }
 
         if (fareMis) {
-            htmlps.status.html("Status : Dropping a Fare.");
+            htmlps.status.html("Status : 🚕 Dropping a Fare.");
             htmlps.FareCompo();
             pedsFGroup.destroyEach();
         }
@@ -743,24 +728,28 @@ function draw() {
             }
         }
 
-
-        //🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽
-
         if (!fareMis && gameState === Play && !taxi.isTouching(eArea)) {
+            var spawn = 0;
+            if (!CF) {
+                spawn = taxi.y-1000;
+            } else if (CF) {
+                spawn = taxi.y+2700;
+            }
 
             if (spWRKDfPedbazaar && !fareMis) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(Warkhandem) && spWRKDfPedbazaar) {
                     if (frameCount % 100 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1) {
-                        WRKDfPedbazaar = createSprite(undefined, taxi.y - 1000, 30, 30);
-                        WRKDfPedbazaar.addImage(pedGrsOI);
+                        WRKDfPedbazaar = createSprite(undefined, spawn - 1000, 30, 30);
                         WRKDfPedbazaar.scale = 1.5;
                         WRKDfPedbazaar.velocityY = -2;
                         WRKDfPedbazaar.setCollider("circle");
                         var WRKDfPedbazaarC = Math.round(random(1, 2));
                         switch (WRKDfPedbazaarC) {
                             case 1: WRKDfPedbazaar.x = Math.round(random(680, 675));
+                                    WRKDfPedbazaar.addImage(pedGrsOI);
                                 break;
                             case 2: WRKDfPedbazaar.x = Math.round(random(125, 130));
+                                    WRKDfPedbazaar.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -769,21 +758,20 @@ function draw() {
                         WRKDfPedbazaarGroup.add(WRKDfPedbazaar);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < WRKDfPedbazaarGroup.length; i++) {
                     if (taxi.isTouching(WRKDfPedbazaarGroup)) {
                         markD = Math.round(DWRKDbazaar.y - DWRKDbazaar.y - DWRKDbazaar.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Warkhandem Bazaar");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 1,200");
+                        htmlps.Fdestination.html("📌 Destination : Warkhandem Bazaar");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 1,200");
+                        htmlps.Ftimer.html("⏱ Arrival in : 90 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < WRKDfPedbazaarGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(WRKDfPedbazaarGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -797,19 +785,19 @@ function draw() {
             }
 
             if (spWRKDfPedmarket) {
-                //------SPAWN WARKHANDEM MARKET PEDS
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(Warkhandem) && spWRKDfPedmarket) {
                     if (frameCount % 120 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1) {
-                        WRKDfPedmarket = createSprite(undefined, taxi.y - 800, 30, 30);
-                        WRKDfPedmarket.addImage(pedGrsOI);
+                        WRKDfPedmarket = createSprite(undefined, spawn, 30, 30);
                         WRKDfPedmarket.scale = 1.5;
                         WRKDfPedmarket.velocityY = -2;
                         WRKDfPedmarket.setCollider("circle");
                         var WRKDfPedmarketC = Math.round(random(1, 2));
                         switch (WRKDfPedmarketC) {
                             case 1: WRKDfPedmarket.x = Math.round(random(680, 675));
+                                    WRKDfPedmarket.addImage(pedGrsOI);
                                 break;
                             case 2: WRKDfPedmarket.x = Math.round(random(125, 130));
+                                    WRKDfPedmarket.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -818,21 +806,20 @@ function draw() {
                         WRKDfPedmarketGroup.add(WRKDfPedmarket);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < WRKDfPedmarketGroup.length; i++) {
                     if (taxi.isTouching(WRKDfPedmarketGroup)) {
                         markD = Math.round(DWRKDmarket.y - DWRKDmarket.y - DWRKDmarket.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Warkhandem Market");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 1,100");
+                        htmlps.Fdestination.html("📌 Destination : Warkhandem Market");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 1,100");
+                        htmlps.Ftimer.html("⏱ Arrival in : 70 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < WRKDfPedmarketGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(WRKDfPedmarketGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -840,7 +827,7 @@ function draw() {
                         WRKDfPedmarketFA = true;
                         fareMis = true;
                         Fdestinas[3].visible = true;
-                        time = 60;
+                        time = 70;
                     }
                 }
 
@@ -849,16 +836,17 @@ function draw() {
             if (spWRKDfPednapalik) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(Warkhandem) && spWRKDfPednapalik) {
                     if (frameCount % 140 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1) {
-                        WRKDfPednapalik = createSprite(undefined, taxi.y - 900, 30, 30);
-                        WRKDfPednapalik.addImage(pedGrsOI);
+                        WRKDfPednapalik = createSprite(undefined, spawn, 30, 30);
                         WRKDfPednapalik.scale = 1.5;
                         WRKDfPednapalik.velocityY = -2;
                         WRKDfPednapalik.setCollider("circle");
                         var WRKDfPednapalikC = Math.round(random(1, 2));
                         switch (WRKDfPednapalikC) {
                             case 1: WRKDfPednapalik.x = Math.round(random(680, 675));
+                                    WRKDfPednapalik.addImage(pedGrsOI);
                                 break;
                             case 2: WRKDfPednapalik.x = Math.round(random(125, 130));
+                                    WRKDfPednapalik.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -867,21 +855,20 @@ function draw() {
                         WRKDfPednapalikGroup.add(WRKDfPednapalik);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < WRKDfPednapalikGroup.length; i++) {
                     if (taxi.isTouching(WRKDfPednapalikGroup)) {
                         markD = Math.round(DWRKDnapalik.y - DWRKDnapalik.y - DWRKDnapalik.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Warkhandem Nagarpalika");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 1,650");
+                        htmlps.Fdestination.html("📌 Destination : Warkhandem Nagarpalika");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 1,650");
+                        htmlps.Ftimer.html("⏱ Arrival in : 110 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < WRKDfPednapalikGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(WRKDfPednapalikGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -889,7 +876,7 @@ function draw() {
                         WRKDfPednapalikFA = true;
                         fareMis = true;
                         Fdestinas[5].visible = true;
-                        time = 90;
+                        time = 110;
                     }
                 }
             }
@@ -897,16 +884,17 @@ function draw() {
             if (spPRKVfPedsupermarket) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(Parkvillia) && spPRKVfPedsupermarket) {
                     if (frameCount % 160 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1) {
-                        PRKVfPedsupermarket = createSprite(undefined, taxi.y - 900, 30, 30);
-                        PRKVfPedsupermarket.addImage(pedGrsOI);
+                        PRKVfPedsupermarket = createSprite(undefined, spawn, 30, 30);
                         PRKVfPedsupermarket.scale = 1.5;
                         PRKVfPedsupermarket.velocityY = -2;
                         PRKVfPedsupermarket.setCollider("circle");
                         var PRKVfPedsupermarketC = Math.round(random(1, 2));
                         switch (PRKVfPedsupermarketC) {
                             case 1: PRKVfPedsupermarket.x = Math.round(random(680, 675));
+                                    PRKVfPedsupermarket.addImage(pedGrsOI);
                                 break;
                             case 2: PRKVfPedsupermarket.x = Math.round(random(125, 130));
+                                    PRKVfPedsupermarket.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -915,21 +903,20 @@ function draw() {
                         PRKVfPedsupermarketGroup.add(PRKVfPedsupermarket);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < PRKVfPedsupermarketGroup.length; i++) {
                     if (taxi.isTouching(PRKVfPedsupermarketGroup)) {
                         markD = Math.round(PRKVsupermarket.y - PRKVsupermarket.y - PRKVsupermarket.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Parkvilia Supermarket");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 2,850");
+                        htmlps.Fdestination.html("📌 Destination : Parkvilia Supermarket");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 2,850");
+                        htmlps.Ftimer.html("⏱ Arrival in : 130 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < PRKVfPedsupermarketGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(PRKVfPedsupermarketGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -945,16 +932,17 @@ function draw() {
             if (spBRAVfPedresidency) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(BernardAvenue) && !taxi.isTouching(Parkvillia) && spBRAVfPedresidency) {
                     if (frameCount % 160 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1 || frameCount % 160 === 0 && taxi.y < -42000 && taxi.y > -77100 && pedsFGroup.length < 1) {
-                        BRAVfPedresidency = createSprite(undefined, taxi.y - 900, 30, 30);
-                        BRAVfPedresidency.addImage(pedGrsOI);
+                        BRAVfPedresidency = createSprite(undefined, spawn, 30, 30);
                         BRAVfPedresidency.scale = 1.5;
                         BRAVfPedresidency.velocityY = -2;
                         BRAVfPedresidency.setCollider("circle");
                         var BRAVfPedresidencyC = Math.round(random(1, 2));
                         switch (BRAVfPedresidencyC) {
                             case 1: BRAVfPedresidency.x = Math.round(random(680, 675));
+                                    BRAVfPedresidency.addImage(pedGrsOI);
                                 break;
                             case 2: BRAVfPedresidency.x = Math.round(random(125, 130));
+                                    BRAVfPedresidency.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -963,22 +951,20 @@ function draw() {
                         BRAVfPedresidencyGroup.add(BRAVfPedresidency);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < BRAVfPedresidencyGroup.length; i++) {
                     if (taxi.isTouching(BRAVfPedresidencyGroup)) {
                         markD = Math.round(BRAVresidency.y - BRAVresidency.y - BRAVresidency.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : B. Avenue Residency");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 3,780");
-                        htmlps.Ftimer.html("Arrival in : 180 s")
+                        htmlps.Fdestination.html("📌 Destination : B. Avenue Residency");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 3,780");
+                        htmlps.Ftimer.html("⏱ Arrival in : 180 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < BRAVfPedresidencyGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(BRAVfPedresidencyGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -994,16 +980,17 @@ function draw() {
             if (spBRAVfPedcalton) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(BernardAvenue) && spBRAVfPedcalton) {
                     if (frameCount % 180 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1 || frameCount % 180 === 0 && taxi.y < -42000 && taxi.y > -84100 && pedsFGroup.length < 1) {
-                        BRAVfPedcalton = createSprite(undefined, taxi.y - 900, 30, 30);
-                        BRAVfPedcalton.addImage(pedGrsOI);
+                        BRAVfPedcalton = createSprite(undefined, spawn, 30, 30);
                         BRAVfPedcalton.scale = 1.5;
                         BRAVfPedcalton.velocityY = -2;
                         BRAVfPedcalton.setCollider("circle");
                         var BRAVfPedcaltonC = Math.round(random(1, 2));
                         switch (BRAVfPedcaltonC) {
                             case 1: BRAVfPedcalton.x = Math.round(random(680, 675));
+                                    BRAVfPedcalton.addImage(pedGrsOI);
                                 break;
                             case 2: BRAVfPedcalton.x = Math.round(random(125, 130));
+                                    BRAVfPedcalton.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -1012,22 +999,20 @@ function draw() {
                         BRAVfPedcaltonGroup.add(BRAVfPedcalton);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < BRAVfPedcaltonGroup.length; i++) {
                     if (taxi.isTouching(BRAVfPedcaltonGroup)) {
                         markD = Math.round(BRAVcalton.y - BRAVcalton.y - BRAVcalton.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : B. Avenue Calton");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 4,200");
-                        htmlps.Ftimer.html("Arrival in : 210 s")
+                        htmlps.Fdestination.html("📌 Destination : B. Avenue Calton");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 4,200");
+                        htmlps.Ftimer.html("⏱ Arrival in : 210 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < BRAVfPedcaltonGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(BRAVfPedcaltonGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -1043,16 +1028,17 @@ function draw() {
             if (spBRAVfPedstadium) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(BernardAvenue) && spBRAVfPedstadium) {
                     if (frameCount % 100 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1 || frameCount % 120 === 0 && taxi.y < -42000 && taxi.y > -90100 && pedsFGroup.length < 1) {
-                        BRAVfPedstadium = createSprite(undefined, taxi.y - 900, 30, 30);
-                        BRAVfPedstadium.addImage(pedGrsOI);
+                        BRAVfPedstadium = createSprite(undefined, spawn, 30, 30);
                         BRAVfPedstadium.scale = 1.5;
                         BRAVfPedstadium.velocityY = -2;
                         BRAVfPedstadium.setCollider("circle");
                         var BRAVfPedstadiumC = Math.round(random(1, 2));
                         switch (BRAVfPedstadiumC) {
                             case 1: BRAVfPedstadium.x = Math.round(random(680, 675));
+                                    BRAVfPedstadium.addImage(pedGrsOI);
                                 break;
                             case 2: BRAVfPedstadium.x = Math.round(random(125, 130));
+                                    BRAVfPedstadium.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -1061,22 +1047,20 @@ function draw() {
                         BRAVfPedstadiumGroup.add(BRAVfPedstadium);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < BRAVfPedstadiumGroup.length; i++) {
                     if (taxi.isTouching(BRAVfPedstadiumGroup)) {
                         markD = Math.round(BRAVstadium.y - BRAVstadium.y - BRAVstadium.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Stadium in BAV");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 5,700");
-                        htmlps.Ftimer.html("Arrival in : 240 s")
+                        htmlps.Fdestination.html("📌 Destination : Stadium in BAV");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 5,700");
+                        htmlps.Ftimer.html("⏱ Arrival in : 240 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < BRAVfPedstadiumGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(BRAVfPedstadiumGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -1092,16 +1076,17 @@ function draw() {
             if (spBRAVfPedparkway) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(BernardAvenue) && spBRAVfPedparkway) {
                     if (frameCount % 110 === 0 && taxi.y < -9800 && taxi.y > -23100 && pedsFGroup.length < 1 || frameCount % 180 === 0 && taxi.y < -42000 && taxi.y > -100100 && pedsFGroup.length < 1) {
-                        BRAVfPedparkway = createSprite(undefined, taxi.y - 900, 30, 30);
-                        BRAVfPedparkway.addImage(pedGrsOI);
+                        BRAVfPedparkway = createSprite(undefined, spawn, 30, 30);
                         BRAVfPedparkway.scale = 1.5;
                         BRAVfPedparkway.velocityY = -2;
                         BRAVfPedparkway.setCollider("circle");
                         var BRAVfPedparkwayC = Math.round(random(1, 2));
                         switch (BRAVfPedparkwayC) {
                             case 1: BRAVfPedparkway.x = Math.round(random(680, 675));
+                                    BRAVfPedparkway.addImage(pedGrsOI);
                                 break;
                             case 2: BRAVfPedparkway.x = Math.round(random(125, 130));
+                                    BRAVfPedparkway.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -1110,22 +1095,20 @@ function draw() {
                         BRAVfPedparkwayGroup.add(BRAVfPedparkway);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < BRAVfPedparkwayGroup.length; i++) {
                     if (taxi.isTouching(BRAVfPedparkwayGroup)) {
                         markD = Math.round(BRAVparkway.y - BRAVparkway.y - BRAVparkway.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Parkway St. in BAV");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 6,100");
-                        htmlps.Ftimer.html("Arrival in : 270 s")
+                        htmlps.Fdestination.html("📌 Destination : Parkway St. in BAV");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+" PX");
+                        htmlps.FXP.html("♢ XP : 6,100");
+                        htmlps.Ftimer.html("⏱ Arrival in : 270 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < BRAVfPedparkwayGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(BRAVfPedparkwayGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -1142,16 +1125,17 @@ function draw() {
             if (spGRSVfPedcouncil) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(Greensville) && spGRSVfPedcouncil) {
                     if (frameCount % 90 === 0 && taxi.y < -77600 && taxi.y > -110100 && pedsFGroup.length < 1) {
-                        GRSVfPedcouncil = createSprite(undefined, taxi.y - 900, 30, 30);
-                        GRSVfPedcouncil.addImage(pedGrsOI);
+                        GRSVfPedcouncil = createSprite(undefined, spawn, 30, 30);
                         GRSVfPedcouncil.scale = 1.5;
                         GRSVfPedcouncil.velocityY = -2;
                         GRSVfPedcouncil.setCollider("circle");
                         var GRSVfPedcouncilC = Math.round(random(1, 2));
                         switch (GRSVfPedcouncilC) {
                             case 1: GRSVfPedcouncil.x = Math.round(random(680, 675));
+                                    GRSVfPedcouncil.addImage(pedGrsOI);
                                 break;
                             case 2: GRSVfPedcouncil.x = Math.round(random(125, 130));
+                                    GRSVfPedcouncil.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -1160,22 +1144,20 @@ function draw() {
                         GRSVfPedcouncilGroup.add(GRSVfPedcouncil);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < GRSVfPedcouncilGroup.length; i++) {
                     if (taxi.isTouching(GRSVfPedcouncilGroup)) {
                         markD = Math.round(GRSVcouncil.y - GRSVcouncil.y - GRSVcouncil.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Greensville Council");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 5,200");
-                        htmlps.Ftimer.html("Arrival in : 210 s")
+                        htmlps.Fdestination.html("📌 Destination : Greensville Council");
+                        htmlps.Fdistance.html("📏 Distance : " + markD+ " PX");
+                        htmlps.FXP.html("♢ XP : 5,200");
+                        htmlps.Ftimer.html("⏱ Arrival in : 210 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < GRSVfPedcouncilGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(GRSVfPedcouncilGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -1191,16 +1173,17 @@ function draw() {
             if (spGRSVfPedground) {
                 if (spawnFPeds && gameState === Play && !taxi.isTouching(Greensville) && spGRSVfPedground) {
                     if (frameCount % 110 === 0 && taxi.y < -83600 && taxi.y > -110100 && pedsFGroup.length < 1) {
-                        GRSVfPedground = createSprite(undefined, taxi.y - 900, 30, 30);
-                        GRSVfPedground.addImage(pedGrsOI);
+                        GRSVfPedground = createSprite(undefined, spawn, 30, 30);
                         GRSVfPedground.scale = 1.5;
                         GRSVfPedground.velocityY = -2;
                         GRSVfPedground.setCollider("circle");
                         var GRSVfPedgroundC = Math.round(random(1, 2));
                         switch (GRSVfPedgroundC) {
                             case 1: GRSVfPedground.x = Math.round(random(680, 675));
+                                    GRSVfPedground.addImage(pedGrsOI);
                                 break;
                             case 2: GRSVfPedground.x = Math.round(random(125, 130));
+                                    GRSVfPedground.addImage(pedGrsO2);
                                 break;
                             default: break;
                         }
@@ -1209,22 +1192,20 @@ function draw() {
                         GRSVfPedgroundGroup.add(GRSVfPedground);
                     }
                 }
-                //------------DETECTION ALGORITHM
                 for (var i = 0; i < GRSVfPedgroundGroup.length; i++) {
                     if (taxi.isTouching(GRSVfPedgroundGroup)) {
                         markD = Math.round(GRSVground.y - GRSVground.y - GRSVground.y + taxi.y);
                         htmlps.FareInf();
                         htmlps.FareInfO();
-                        htmlps.Fdestination.html("Destination : Greensville Ground");
-                        htmlps.Fdistance.html("Distance : " + markD);
-                        htmlps.FXP.html("XP : 6,300");
-                        htmlps.Ftimer.html("Arrival in : 240 s")
+                        htmlps.Fdestination.html("📌 Destination : Greensville Ground");
+                        htmlps.Fdistance.html("📏 Distance : " + markD +" PX");
+                        htmlps.FXP.html("♢ XP : 6,300");
+                        htmlps.Ftimer.html("⏱ Arrival in : 240 s")
                     } else {
                         htmlps.FareInfC();
                     }
                 }
 
-                //---------VALUE TO DETECT IF Y IS PRESSED
                 for (var i = 0; i < GRSVfPedgroundGroup.length; i++) {
                     if (keyDown("Y") && taxi.isTouching(GRSVfPedgroundGroup) && !fareMis) {
                         htmlps.FareInfC();
@@ -1238,10 +1219,6 @@ function draw() {
             }
         }
 
-        //🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼
-
-        //➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿v
-
         if (fareMis) {
             htmlps.topsy.style('opacity', '1');
         } else {
@@ -1251,7 +1228,6 @@ function draw() {
         if (fareMis) {
 
             if (WRKDfPedbazaarFA) {
-                //----------------------WARKHANDEM BAZAAR MISSION 
                 if (gameState === Play && fareMis) {
                     var FDestina4 = Fdestinas[4].y - Fdestinas[4].y - Fdestinas[4].y + taxi.y;
                     if (FDestina4 < 4000) {
@@ -1259,19 +1235,21 @@ function draw() {
                     }
                     if (FDestina4 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina4 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Bazaar. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Bazaar in Warkhandem.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina4));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina4)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina4) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina4) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (gameState === Play && fareMis && taxi.isTouching(Fdestinas[4]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 1200;
                     Fdestinas[4].destroy();
@@ -1291,7 +1269,6 @@ function draw() {
             }
 
             if (WRKDfPedmarketFA) {
-                //----------------------WARKHANDEM Market MISSION 
                 if (WRKDfPedmarketFA && gameState === Play && fareMis) {
                     var FDestina3 = Fdestinas[3].y - Fdestinas[3].y - Fdestinas[3].y + taxi.y;
                     if (FDestina3 < 4000) {
@@ -1299,19 +1276,21 @@ function draw() {
                     }
                     if (FDestina3> 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina3 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Market. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Market in Warkhandem.");
                     htmlps.dropOff.style('opacity', '1');
                     htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina3));
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina3) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina3) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (WRKDfPedmarketFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[3]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 1100;
                     Fdestinas[3].destroy();
@@ -1338,19 +1317,21 @@ function draw() {
                     }
                     if (FDestina5 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina5 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Nagarpalika (NPP). Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : NPP in Warkhandem.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina5));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina5)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina5) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina5) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (WRKDfPednapalikFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[5]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 1900;
                     Fdestinas[5].destroy();
@@ -1376,8 +1357,11 @@ function draw() {
                     }
                     if (FDestina6 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina6 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Parkvillia Supermarket. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Supermarket in Parkvillia.");
@@ -1385,13 +1369,12 @@ function draw() {
                     htmlps.dropOff.style('padding', '3px');
                     htmlps.dropOff.style('width', '380px');
                     htmlps.dropOff.position(780, 160);
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina6));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina6)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina6) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina6) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (PRKVfPedsupermarketFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[6]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 2850;
                     setTimeout(feedBOpa, 5000);
@@ -1417,8 +1400,11 @@ function draw() {
                     }
                     if (FDestina7 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina7 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Wing Gardens Residency in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Residency in BAV.");
@@ -1426,13 +1412,12 @@ function draw() {
                     htmlps.dropOff.style('padding', '3px');
                     htmlps.dropOff.style('width', '380px');
                     htmlps.dropOff.position(780, 160);
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina7));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina7)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina7) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina7) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (BRAVfPedresidencyFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[7]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 3780;
                     Fdestinas[7].destroy();
@@ -1458,19 +1443,21 @@ function draw() {
                     }
                     if (FDestina8 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina8 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Calton St. in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Calton St. in BAV.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina8));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina8)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina8) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina8) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (BRAVfPedcaltonFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[8]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 4200;
                     Fdestinas[8].destroy();
@@ -1496,19 +1483,21 @@ function draw() {
                     }
                     if (FDestina9 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina9 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by national Stadium in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Stadium in BAV.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina9));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina9)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina9) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina9) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (BRAVfPedstadiumFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[9]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 5700;
                     Fdestinas[9].destroy();
@@ -1534,19 +1523,21 @@ function draw() {
                     }
                     if (FDestina10 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina10 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Parkway St. in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Parkway St. in BAV.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina10));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina10)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina10) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina10) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (BRAVfPedparkwayFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[10]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 6100;
                     setTimeout(feedBOpa, 5000);
@@ -1572,19 +1563,21 @@ function draw() {
                     }
                     if (FDestina1 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina1 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare at Council in Greensville. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Greensville Council.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina1));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina1)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina1) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina1) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (GRSVfPedcouncilFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[1]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 5200;
                     Fdestinas[1].destroy();
@@ -1610,19 +1603,21 @@ function draw() {
                     }
                     if (FDestina0 > 0) {
                         htmlps.topsy.html(" ⬆ ");
+                        htmlps.turvy.style('opacity', '0')
                     } else if (FDestina0 < 0) {
-                        htmlps.topsy.html(" ⬇ ")
+                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                        htmlps.turvy.style('opacity', '1');
                     }
                     htmlps.guide.html("ⓘ Drop the fare at the Ground in Greensville. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Greensville Ground");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina0));
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina0)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html(" " + Math.round(FDestina0) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina0) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
-                //IF MISSION COMPLETED
                 if (GRSVfPedgroundFA && gameState === Play && fareMis && taxi.isTouching(Fdestinas[0]) && time > 0 && taxi.velocityY === 0) {
                     XP = XP + 6300;
                     Fdestinas[0].destroy();
@@ -1655,16 +1650,12 @@ function draw() {
             htmlps.timerE.style('opacity', '1');
         }
 
-        //➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿➿
-
-        //DESTROY FARE PEDS WHEN NOT IN RANGE FROM TAXI
         for (var i = 0; i < pedsFGroup.length; i++) {
-            if (pedsFGroup.get(i).y > taxi.y + 1000) {
+            if (pedsFGroup.get(i).y > taxi.y + 1000 && !CF || pedsFGroup.get(i).y < taxi.y-1200 && CF) {
                 pedsFGroup.get(i).destroy();
             }
         }
 
-        //FOR ALL FARE PEDS - STOP WHEN TAXI PULLS ALONGSIDE
         for (var i = 0; i < pedsFGroup.length; i++) {
             if (taxi.isTouching(pedsFGroup.get(i))) {
                 pedsFGroup.get(i).velocityY = 0;
@@ -1676,8 +1667,6 @@ function draw() {
                 htmlps.guide.style('white-space', 'break-space')
             }
         }
-
-        //----------------------------------------------------SPAWN RANDOM PEDS---------------@@
 
         if (spawnPeds && speed > 0) {
 
