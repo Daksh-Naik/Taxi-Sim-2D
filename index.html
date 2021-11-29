@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="base.css">
-    
-    <title>Taxi Sim 2D</title>
         
         <link rel="icon" href="thmb.png">
         <link rel="stylesheet" href="base.css">
@@ -19,7 +17,7 @@
 
         <meta property="og:title" content="Taxi Sim 2D P5 - a Web Browser Game"/>
         <meta property="og:description" content="Taxi Sim 2D P5 , a Web-Game purely created by P5.PLAY.JS and P5.DOM. | Hosted by : Github-Pages."/>
-        <meta property="og:url" content="https://daksh-naik.github.io/Taxi-Sim-2D/"/>
+        <!-- <meta property="og:url" content="https://daksh-naik.github.io/Package-Delivery-Sim-2D/"/> -->
         <meta property="og:type" content="game"/>
         <meta property="og:locale" content="en_IN" />
         <meta property="og:image" content="thumbnailv.png"/> 
@@ -116,10 +114,13 @@
             #Ltips { display: none; } #tips { display: none; } .tips { display: none; }
             .introdSM { display: flex; }
             .impre { display: none; }
+            #playGamea { display: none; } #scLT { display: none; }
+            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; }
         }
         @media only screen and (max-width: 750px) {
             .intro { flex-direction: column; }
             .tips { padding: 20px; }
+            .menu.active .word { position: fixed; top: 0px; left: calc(10vw);}
         }
         @media only screen and (max-width: 860px) {
             .req { flex-direction: column; height: max-content; align-items: center; }
@@ -133,6 +134,16 @@
         }
         @media only screen and (max-width:450px) {
             .infor { padding: 30px 10px 30px 20px; }
+            .menu.toggle { top: 0px; right: 0px; }
+        }
+
+        @media only screen and (max-width: 400px) {
+            .intro { height: min-content; }
+        }
+
+        @media only screen and (max-height: 500px) {
+            .intro { height: min-content; }
+            .credits { height: min-content; }
         }
     </style>
 
@@ -161,9 +172,9 @@
     </div>
 
     <div class="menu">
-        <div class="toggle"><ion-icon name="reorder-three-outline"></ion-icon>
-        </div>
+        <div class="toggle"><ion-icon name="reorder-three-outline"></ion-icon></div>
         <div class="word"><p id="word"></p></div>
+        <div class="content">
         <li style="--i:0;" id="MSintro">
             <a href="#toppa"><ion-icon name="information-circle-outline"></ion-icon></a>
         </li>
@@ -188,6 +199,7 @@
         <li style="--i:7;" id="MSstats">
             <a href="#Lcredits"><ion-icon name="stats-chart-outline"></ion-icon><ion-icon name="ribbon-outline"></ion-icon></a>
         </li>
+        </div>
     </div>
 
     <div class="introdSM">
@@ -211,12 +223,12 @@
         <ion-icon name="warning-outline" style="color:black; font-size: 10vh;"></ion-icon>
         <h2>I'm really sorry to say, <br>
             Your device doesn't have enough resolution to play this game. <br>
-            (Minimum resolution 1145 PX Width)</h2>
+            (Minimum resolution 1145 PX in Width needed + Keyboard) <br>If you have a keyboard, Zoom out the screen to play.</h2>
     </div>
 
-    <div class="welc" id="Linfo">
+    <div class="welc reveal" id="Linfo">
         <h2>Before fastening your seatbelt,</h2>
-        <h3>It'll be better if you're introduced to this game. The information below will take up about <strong class="noteD">5 Minutes</strong>
+        <h3>It'll be better if you're introduced to this game. The information below will take up to about <strong class="noteD">5 minutes</strong>
         of your time, I'll promise you it'll be short.</h3>
         <div class="read"><a href="#intro">Read more</a></div>
         <h2>OR</h2>
@@ -225,6 +237,7 @@
         </div>
     </div>
 
+    <div class="reveal">
     <h2 class="code" id="Lintro">what</h2>
     <div class="intro" id="intro">
         <div class="text">
@@ -232,7 +245,7 @@
             <p>TAXI Sim 2D is a Simulation - Arcade web-browser game, depicting a day in a life of a Taxi Driver. 
                 For now, this game is only available for <strong class="note">Desktop Browsers (Keyboard mandatory)</strong>
                 and for devices with <strong class="note">a minimum 1200 PX width</strong> resolutions. </p>
-            <p>As the name suggests, this <strong class="note">Game is 2D</strong>, you are provided with a Taxi and a plathera
+            <p>As the name suggests, this <strong class="note">Game is 2D</strong>, you are provided with a Taxi and a plethora
                 of components assigned that will assist you in your journey.</p>
             <a href="#details" class="det">VIEW IN-DEPTH DETAILS</a>
         </div>
@@ -241,18 +254,20 @@
         </div>
     </div>
     <h2 class="codeend" id="intro">what</h2>
+    </div>
 
+    <div class="reveal">
     <h2 class="code" id=Lfeatures>features</h2>
         <div class="features">
             <h2>Why should I play?</h2>
             <div class="cards">
                 <div class="card">
                     <h2><ion-icon name="reorder-four-outline"></ion-icon></h2>
-                    <p>Open Controls, Map, Help tabs by pressing <kbd>H</kbd> and <kbd>N</kbd> keys</p>
+                    <p>Open Controls, Map, & Help tabs by pressing <kbd>H</kbd> and <kbd>N</kbd> keys</p>
                 </div>
                 <div class="card">
                     <h2><ion-icon name="map-outline"></ion-icon></h2>
-                    <p>4 Maps, 9 Different destination drop-Offs</p>
+                    <p>4 Cities, 9 Different destination drop-Offs</p>
                 </div>
                 <div class="card">
                     <h2><ion-icon name="car-sport"></ion-icon></h2>
@@ -275,7 +290,9 @@
             </div>
         </div>
     <h2 class="codeend" id="features">features</h2>
+    </div>
 
+    <div class="reveal">
     <h2 class="code" id="Lreq">requirements</h2>
         <div class="req">
             <div class="card">
@@ -302,19 +319,21 @@
             </div>
         </div>
     <h2 class="codeend" id="req">requirements</h2>
+    </div>
 
+    <div class="reveal">
     <h2 class="code" id="Ldetails">details</h2>
         <div class="infor">
             <h2>Information</h2>
-            <p>As it's 2D, the realism will lower your expectations. In raw words, you, as a Taxi Driver, have to search for fares,
-                drive upto them and drop them at their desired destination. You'll be rewarded with XP. Drop atleast 3 Fares to win the game.</p>
+            <p>As it's 2D, the realism will curb your expectations. In raw words, you, as a Taxi Driver, have to search for fares,
+                drive upto / near them, pick and drop them at their desired destination. You'll be rewarded with XP. Drop atleast 3 Fares to win the game.</p>
             <p>To win, you'll have to keep in mind these notes :</p>
             <p>1. Drop atleast <strong class="note">3 Fares</strong> to win the game. <br>
                2. You have to avoid <strong class="note">crashing into Traffic</strong> and <strong class="note">reaching late.</strong></p>
             <p>Let's be practical : In order to win this game, you'll have to <strong class="note">search a fare</strong> (enclosed
                 in circles) first. Obviously, you can't play football without a ball. Then, <strong class="note">drive up your
                     taxi and touch the circle</strong>, you'll see information of where the fare <strong class="note">desires to go,
-                    how long the destination is, XP and the time the fare has to reach before.</strong> If you're interested, press
+                    how far away the destination is, XP and the time the fare has to arrive before.</strong> If you're interested, press
                     <kbd>Y</kbd> and start your job. That's it.</p>
             <p>No, don't assume that the map is large. The map is about <strong class="note">120,000 PX</strong> long in length, but only
                 <strong class="note">1,200 PX</strong> small in width. Yes, it's a really long strip.</p>
@@ -325,7 +344,9 @@
             <p>Don't worry, there are components assigned to assist you in your journey. Keep an eye on them always.</p>
         </div>
     <h2 class="codeend" id="details">details</h2>
+    </div>
 
+    <div class="reveal">
     <h2 class="code" id="Limages">images</h2>
         <div class="screenshort">
             <h3>To get yourself familiar with the game, here are some images to get you an idea how the game is.</h3>
@@ -343,7 +364,9 @@
             </picture>
         </div>
     <h2 class="codeend" id="images">images</h2>
+    </div>
 
+    <div class="reveal">
     <h2 class="code" id="Lfinally">finally</h2>
         <div class="playAr" id="playGame">
                 <h2>Ready to play?</h2>
@@ -355,7 +378,9 @@
             </div>
         </div>
     <h2 class="codeend" id="finally">finally</h2>
+    </div>
 
+    <div class="reveal">
     <h2 class="code" id="Ltips">tips</h2>
         <div class="tips">
             <div class="text">
@@ -367,6 +392,7 @@
             </div>
         </div>
     <h2 class="codeend" id="tips">tips</h2>
+    </div>
 
     <h2 class="code" id="Lcredits">credits</h2>
         <div class="credits">
@@ -400,10 +426,12 @@
                 </div>
             </div>
             <h2>Website and Game Hosted online by : Github Pages</h2>
+            <br></br>
+            <h3>Total time taken to develop : about 94 Hours</h3>
         </div>
     <h2 class="codeend" id="credits">credits</h2>
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 20vh;">
+    <div style="display: flex; justify-content: center; align-items: center; height: 20vh; text-align: center;">
         <h3>Website, Game, Designed and Developed by : <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer">Daksh N</a></h3>
     </div>
 
@@ -479,6 +507,18 @@
         stats.onmouseover = () => {
             wordin.innerHTML = "Credits & Stats";
         }
+    </script>
+    <script type="text/Javascript">
+        window.addEventListener('scroll', reveal);
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 100;
+                if (revealtop < windowHeight - revealpoint){
+                    reveals[i].classList.add('active');
+                } } }
     </script>
 
 </body>
