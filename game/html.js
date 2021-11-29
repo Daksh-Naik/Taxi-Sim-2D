@@ -23,6 +23,7 @@ class HTMLPSCHARS {
         this.taxiGR = createElement('h3');
         this.taxiP = createElement('h2');
         this.topsy = createElement('h2');
+        this.turvy = createElement('h3');
 
         this.status = createElement('h2');
         this.loc = createElement('h2');
@@ -96,8 +97,8 @@ class HTMLPSCHARS {
         this.guide.style('line-height', '1.5');
         this.guide.style('white-space', 'break-spaces');
 
-        this.jobDo.html("Fares done : "+fareCo+" /3");
-        this.jobDo.position(1020, 465);
+        this.jobDo.html("☑ Fares done : "+fareCo+" /3");
+        this.jobDo.position(1000, 465);
 
         this.taxiSpeed.position(830, 400);
         this.taxiSpeed.html("Speed : ");
@@ -115,7 +116,7 @@ class HTMLPSCHARS {
         this.taxiSpeedn.style('border-radius', '5px');
 
         this.taxiSpeednEA.position(10, 400);
-        this.taxiSpeednEA.html(" " + " "+Math.round(speed) + " px/s");
+        this.taxiSpeednEA.html("⏲ " + " "+Math.round(speed) + " px/s");
         this.taxiSpeednEA.style('font-style', 'italic');
 
         this.taxiGR.position(1085, 400);
@@ -138,15 +139,15 @@ class HTMLPSCHARS {
         this.status.style('padding', '10px');
 
         this.XP.position(790, 465);
-        this.XP.html("Total XP : "+XP);
+        this.XP.html("♢ Total XP : "+XP);
 
         this.ttD.position(920, 510);
-        this.ttD.html("Driving for : "+totaltimeD+" s");
+        this.ttD.html("⌚ Driving for : "+totaltimeD+" s");
 
     }
 
     showBoundar() {
-        this.boundar.html("You reached the boundary limit. Press Z to flip again.");
+        this.boundar.html("🚫 You reached the boundary limit. Press Z to flip again. 🚫");
         this.boundar.position(10, 230);
         this.boundar.style('opacity', '0');
         this.boundar.style('width', '200px');
@@ -183,10 +184,15 @@ class HTMLPSCHARS {
 
         this.topsy.html(" ⬆ ");
         this.topsy.position(700, 120);
-        this.topsy.style('color', 'palegreen');
+        this.topsy.style('color', 'rgb(74, 255, 33)');
         this.topsy.style('opacity', '0');
         this.topsy.style('background-color', 'rgba(0, 0, 0, 0.3)');
         this.topsy.style('padding', '10px');
+
+        this.turvy.html("Press Z to flip Canvas");
+        this.turvy.position(10, 200);
+        this.turvy.style('width', '175px');
+        this.turvy.style('opacity', '0');
         
     }
 
@@ -218,13 +224,13 @@ class HTMLPSCHARS {
         this.distanceDestina.style('opacity', '1');
 
         this.timerE.position(855, 270);
-        this.timerE.html("Time left : "+time +" s");
+        this.timerE.html("⏳ Time left : "+time +" s");
         this.timerE.style('padding', '10px');
         this.timerE.style('background-color', 'black');
         this.timerE.style('border-radius', '5px');
 
         this.timerEas.position(10, 500);
-        this.timerEas.html(" "+time +" s");
+        this.timerEas.html("⏳ "+time +" s");
 
         this.distanceDestinaEa.position(650, 200);
     }
@@ -248,16 +254,16 @@ class HTMLPSCHARS {
         this.taxiSpeednEA.hide();
         this.taxiP.html("Last Pos :"+" "+Math.round(taxi.y - taxi.y - taxi.y));
         this.FXP.style('opacity', '1');
-        this.FXP.html("XP Earned : "+XP);
+        this.FXP.html("♢ XP Earned : "+XP);
         this.distanceDestinaEa.hide();
     }
 
     gameDue() {
         this.framecounter.html("Too late!");
         this.alert.html("Sorry, you couldn't make it in time!");
-        this.alert.position(360, 150);
+        this.alert.position(300, 150);
         this.alert.style('padding', '10px');
-        this.alert.style('background-color', 'rgba(0, 0, 0, 0.5)');
+        this.alert.style('background-color', 'rgba(0, 0, 0, 0.7)');
         this.guide.html("Sorry, you ran out of time."+" Press F5 or E to Restart. ");
     }
 
