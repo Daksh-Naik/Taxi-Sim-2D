@@ -256,6 +256,11 @@ class HTMLPSCHARS {
         this.FXP.style('opacity', '1');
         this.FXP.html("♢ XP Earned : "+XP);
         this.distanceDestinaEa.hide();
+        this.topsy.hide();
+        this.turvy.hide();
+        this.ttD.position(500, 200);
+        this.ttD.html("⌚ Total time driven : "+totaltimeD+" s") 
+
     }
 
     gameDue() {
