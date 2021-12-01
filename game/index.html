@@ -13,7 +13,7 @@
 
         <meta property="og:title" content="Taxi Sim 2D P5 - a Web Browser Game"/>
         <meta property="og:description" content="Taxi Sim 2D P5 , a Web-Game purely created by P5.PLAY.JS and P5.DOM. | Hosted by : Github-Pages."/>
-        <meta property="og:url" content="https://daksh-naik.github.io/Taxi-Sim-2D/"/>
+        <meta property="og:url" content="https://daksh-naik.github.io/Taxi-Sim-2D/game/index.html"/>
         <meta property="og:type" content="game"/>
         <meta property="og:locale" content="en_IN" />
         <meta property="og:image" content="images/thumbnailv.png"/> 
@@ -34,6 +34,11 @@
         ::-webkit-scrollbar-thumb { background: yellow; }
         .error { display: none; justify-content: space-evenly; align-items: center; height: 100vh; text-align: center; flex-direction: column;}
         .error h5 { font-size: 5vh; } .error h6 { font-size: 3vh; }
+        .introdSM { display: none; justify-content: center; align-items: center; height: 100vh; flex-direction: column;}
+        .introdSM { font-size: 10vh; opacity: 0.3; }
+        .introdSM h2:nth-child(1) { color: rgb(253, 240, 1); }
+        .introdSM h2:nth-child(2) { color: rgb(113, 225, 249); }
+        .introdSM h2:nth-child(3) { color: rgb(255, 0, 72); }
         *{ font-variant-numeric: tabular-nums; padding: 0; margin: 0; box-sizing: border-box; color: white; 
             font-family: 'Trebuchet MS'; transition: 0.3s ease; user-select: none;}
         body { overflow-y: hidden;  background-color: black; } html { scroll-behavior: smooth;}
@@ -91,6 +96,12 @@
             <div class="line"></div>
             <h2 style="position: fixed; bottom: 25vh; color: rgba(255, 255, 255, 0.5);">This usually takes about 15 seconds...</h2>
         </div>
+    </div>
+
+    <div class="introdSM" id="win">
+        <h2>Taxi</h2>
+        <h2>Sim</h2>
+        <h2>2D</h2>
     </div>
 
     <div class="error">
