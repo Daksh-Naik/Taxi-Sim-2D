@@ -24,6 +24,7 @@ class HTMLPSCHARS {
         this.taxiP = createElement('h2');
         this.topsy = createElement('h2');
         this.turvy = createElement('h3');
+        this.droppa = createElement('h3');
 
         this.status = createElement('h2');
         this.loc = createElement('h2');
@@ -154,10 +155,11 @@ class HTMLPSCHARS {
     }
 
     feedBack() {
-        this.fedB.html("Good job! "+fareCo+" /3 Fares remaining to win.");
+        this.fedB.html("✯ Good job! "+fareCo+" /3 Fares remaining to win.");
         this.fedB.position(10, 320);
         this.fedB.style('width', '200px');
         this.fedB.style('opacity', '1');
+        this.fedB.style('background-color', 'rgba(0, 0, 0, 0.8)');
     }
 
     FareInf() {
@@ -182,11 +184,11 @@ class HTMLPSCHARS {
         this.FXP.style('width', '400px');
         this.FXP.html(" ");
 
-        this.topsy.html(" ⬆ ");
+        this.topsy.html(" ↑ ");
         this.topsy.position(700, 120);
         this.topsy.style('color', 'rgb(74, 255, 33)');
         this.topsy.style('opacity', '0');
-        this.topsy.style('background-color', 'rgba(0, 0, 0, 0.3)');
+        this.topsy.style('background-color', 'rgba(0, 0, 0, 0.7)');
         this.topsy.style('padding', '10px');
 
         this.turvy.html("Press Z to flip Canvas");
@@ -233,6 +235,12 @@ class HTMLPSCHARS {
         this.timerEas.html("⏳ "+time +" s");
 
         this.distanceDestinaEa.position(650, 200);
+
+        this.droppa.html("ⓘ Drop the fare in the yellow designated area.");
+        this.droppa.position(600, 490);
+        this.droppa.style('width', '180px');
+        this.droppa.style('background-color', 'rgba(0, 0, 0, 0.9)');
+        this.droppa.style('opacity', '0');
     }
 
     gameWin() {
@@ -253,14 +261,20 @@ class HTMLPSCHARS {
         this.framecounter.hide();
         this.taxiSpeednEA.hide();
         this.taxiP.html("Last Pos :"+" "+Math.round(taxi.y - taxi.y - taxi.y));
+        this.taxiP.position(900, 300);
+        this.loc.position(920, 350);
+        this.CF.hide();
+        this.jobDo.hide();
         this.FXP.style('opacity', '1');
         this.FXP.html("♢ XP Earned : "+XP);
+        this.FXP.position(370, 450);
         this.distanceDestinaEa.hide();
         this.topsy.hide();
-        this.turvy.hide();
-        this.ttD.position(500, 200);
-        this.ttD.html("⌚ Total time driven : "+totaltimeD+" s") 
-
+        this.ttD.style('font-size', '2vh');
+        this.ttD.position(300, 200);
+        this.XP.hide();
+        this.ttD.html("⌚ Total time driven : "+totaltimeD+" s");
+        this.droppa.hide(); 
     }
 
     gameDue() {
