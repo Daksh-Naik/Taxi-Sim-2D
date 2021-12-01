@@ -14,7 +14,7 @@ var destinaIm;
 var eArea1, eArea2;
 var upar, rightar, uparimage, rightarimage;
 var nav1e43image, nav1e43, nav1e43intimage, nav1e43int, nav2e52image, nav2e52intimage, nav2e52int;
-var fareMis = false;
+var fareMis = false, cCrash = true;
 var CF = false;
 
 var iPaths = [], frontGRL, backGRL, backBlock, inviBar;
@@ -1221,12 +1221,22 @@ function draw() {
 
         if (fareMis) {
             htmlps.topsy.style('opacity', '1');
-        } else {
+            htmlps.droppa.style('opacity', '1');
+            htmlps.turvy.style('opacity', '1');
+            setTimeout(function(){
+                if (CZ) {
+                    htmlps.droppa.style('opacity', '0');
+                }
+            }, 6000)
+        } else if (!fareMis) {
             htmlps.topsy.style('opacity', '0');
+            htmlps.turvy.style('opacity', '0');
+            setTimeout(function(){
+                htmlps.droppa.style('opacity', '0');
+            }, 5000)
         }
 
         if (fareMis) {
-
             if (WRKDfPedbazaarFA) {
                 if (gameState === Play && fareMis) {
                     var FDestina4 = Fdestinas[4].y - Fdestinas[4].y - Fdestinas[4].y + taxi.y;
@@ -1234,12 +1244,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina4 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina4 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina4 < 1000 || FDestina4 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Bazaar. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Bazaar in Warkhandem.");
@@ -1275,12 +1290,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina3> 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina3 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina3 < 1000 || FDestina3 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Market. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Market in Warkhandem.");
@@ -1316,12 +1336,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina5 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina5 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina5 < 1000 || FDestina5 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Nagarpalika (NPP). Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : NPP in Warkhandem.");
@@ -1356,12 +1381,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina6 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina6 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina6 < 1000 || FDestina6 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Parkvillia Supermarket. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Supermarket in Parkvillia.");
@@ -1399,12 +1429,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina7 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina7 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina7 < 1000 || FDestina7 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Wing Gardens Residency in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Residency in BAV.");
@@ -1442,12 +1477,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina8 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina8 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina8 < 1000 || FDestina8 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Calton St. in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Calton St. in BAV.");
@@ -1482,12 +1522,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina9 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina9 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina9 < 1000 || FDestina9 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by national Stadium in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Stadium in BAV.");
@@ -1522,12 +1567,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina10 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina10 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina10 < 1000 || FDestina10 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare by Parkway St. in Bernard Avenue. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Parkway St. in BAV.");
@@ -1562,12 +1612,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina1 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina1 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina1 < 1000 || FDestina1 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare at Council in Greensville. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Greensville Council.");
@@ -1602,12 +1657,17 @@ function draw() {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
                     if (FDestina0 > 0) {
-                        htmlps.topsy.html(" ⬆ ");
+                        htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
                     } else if (FDestina0 < 0) {
-                        htmlps.topsy.html(" ⬇ ");
+                        htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }
+                    if (FDestina0 < 1000 || FDestina0 < -750) {
+                        htmlps.droppa.style('opacity', '1')
+                    } else {
+                        htmlps.droppa.style('opacity', '0');
                     }
                     htmlps.guide.html("ⓘ Drop the fare at the Ground in Greensville. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Greensville Ground");
@@ -1957,10 +2017,10 @@ function draw() {
 
         if (fareCo > 2 && gameState === Play) {
             gameState = Win;
-            htmlps.jobDo.html("3/3");
+            htmlps.jobDo.hide();
         }
 
-        if (taxi.isTouching(TrafficGroup)) {
+        if (taxi.isTouching(TrafficGroup) && cCrash) {
             gameState = End;
         }
 
@@ -2031,6 +2091,8 @@ function draw() {
         background(0, 0, 0);
         taxi.velocityY = 0;
         htmlps.gameWin();
+        noCanvas();
+        document.getElementById('win').style.display = "flex";
     }
 }
 
@@ -2048,8 +2110,11 @@ function defTTDCounter() {
 }
 
 function autoEnd() {
-    if (gameState === End || gameState === Due) {
+    if (gameState === End) {
         window.location.reload();
+    }
+    if (gameState === Due) {
+        window.location.relaod();
     }
 }
 
