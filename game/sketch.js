@@ -1223,17 +1223,10 @@ function draw() {
             htmlps.topsy.style('opacity', '1');
             htmlps.droppa.style('opacity', '1');
             htmlps.turvy.style('opacity', '1');
-            setTimeout(function(){
-                if (CZ) {
-                    htmlps.droppa.style('opacity', '0');
-                }
-            }, 6000)
         } else if (!fareMis) {
             htmlps.topsy.style('opacity', '0');
+            htmlps.droppa.style('opacity', '0');
             htmlps.turvy.style('opacity', '0');
-            setTimeout(function(){
-                htmlps.droppa.style('opacity', '0');
-            }, 5000)
         }
 
         if (fareMis) {
@@ -1251,7 +1244,7 @@ function draw() {
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
                     }
-                    if (FDestina4 < 1000 || FDestina4 < -750) {
+                    if (FDestina4 < 1000 || FDestina4 > -750) {
                         htmlps.droppa.style('opacity', '1')
                     } else {
                         htmlps.droppa.style('opacity', '0');
@@ -1272,9 +1265,9 @@ function draw() {
                     setTimeout(feedBOpa, 5000);
                     spWRKDfPedbazaar = false;
                     fareCo = fareCo + 1;
+                    htmlps.feedBack();
                     fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
-                    htmlps.feedBack();
                 }
 
                 if (gameState === Play && fareMis && time <= 0) {
@@ -1318,8 +1311,8 @@ function draw() {
                     spWRKDfPedmarket = false;
                     setTimeout(feedBOpa, 5000);
                     fareCo = fareCo + 1;
-                    fareMis = false;
                     htmlps.feedBack();
+                    fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
                 }
 
@@ -1362,9 +1355,9 @@ function draw() {
                     Fdestinas[5].destroy();
                     WRKDfPednapalikFA = false;
                     spWRKDfPednapalik = false;
-                    htmlps.feedBack();
                     setTimeout(feedBOpa, 5000);
                     fareCo = fareCo + 1;
+                    htmlps.feedBack();
                     fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
                 }
@@ -1412,9 +1405,10 @@ function draw() {
                     PRKVfPedsupermarketFA = false;
                     PRKVfPedsupermarket = false;
                     fareCo = fareCo + 1;
+                    htmlps.feedBack();
                     fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
-                    htmlps.feedBack();
+                    
                 }
 
                 if (PRKVfPedsupermarketFA && gameState === Play && fareMis && time <= 0) {
@@ -1458,8 +1452,8 @@ function draw() {
                     Fdestinas[7].destroy();
                     BRAVfPedresidencyFA = false;
                     spBRAVfPedresidency = false;
-                    htmlps.feedBack();
                     fareCo = fareCo + 1;
+                    htmlps.feedBack();
                     setTimeout(feedBOpa, 5000);
                     fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
@@ -1548,9 +1542,9 @@ function draw() {
                     Fdestinas[9].destroy();
                     setTimeout(feedBOpa, 5000);
                     BRAVfPedstadiumFA = false;
-                    htmlps.feedBack();
                     spBRAVfPedstadium = false;
                     fareCo = fareCo + 1;
+                    htmlps.feedBack();
                     fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
                 }
@@ -1595,8 +1589,8 @@ function draw() {
                     BRAVfPedparkwayFA = false;
                     spBRAVfPedparkway = false;
                     fareCo = fareCo + 1;
-                    fareMis = false;
                     htmlps.feedBack();
+                    fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
                 }
 
@@ -1639,8 +1633,8 @@ function draw() {
                     GRSVfPedcouncilFA = false;
                     spGRSVfPedcouncil = false;
                     fareCo = fareCo + 1;
-                    fareMis = false;
                     htmlps.feedBack();
+                    fareMis = false;
                     setTimeout(feedBOpa, 5000);
                     htmlps.guide.html("Nice one! Now look for another fare.");
                 }
@@ -1682,10 +1676,10 @@ function draw() {
                     XP = XP + 6300;
                     Fdestinas[0].destroy();
                     GRSVfPedgroundFA = false;
-                    htmlps.feedBack();
                     setTimeout(feedBOpa, 5000);
                     spGRSVfPedground = false;
                     fareCo = fareCo + 1;
+                    htmlps.feedBack();
                     fareMis = false;
                     htmlps.guide.html("Nice one! Now look for another fare.");
                 }
@@ -2015,9 +2009,24 @@ function draw() {
             }
         }
 
+        for (var i = 0; i < TrafficGroup.length; i++) {
+            var a = Math.round(random(450, 500))
+            if (TrafficGroup.get(i).x < 400 && taxi.x < 400 && CF) {
+                TrafficGroup.get(i).velocityY = -1;
+            }
+        }
+
         if (fareCo > 2 && gameState === Play) {
             gameState = Win;
             htmlps.jobDo.hide();
+        }
+
+        if (keyWentDown("X") && gameState === Play && cCrash) {
+            cCrash = false;
+            htmlps.cCrashAlert();
+            setTimeout(function(){
+                htmlps.ccrash.style('opacity', '0');
+            }, 4000);
         }
 
         if (taxi.isTouching(TrafficGroup) && cCrash) {
@@ -2057,6 +2066,7 @@ function draw() {
             }
         }
         taxi.velocityY = 0;
+        taxi.velocityX = 0;
     } 
 
     if (gameState == End) {
@@ -2110,12 +2120,7 @@ function defTTDCounter() {
 }
 
 function autoEnd() {
-    if (gameState === End) {
         window.location.reload();
-    }
-    if (gameState === Due) {
-        window.location.relaod();
-    }
 }
 
 function boundarOpa() {
