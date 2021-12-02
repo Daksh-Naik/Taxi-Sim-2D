@@ -25,6 +25,7 @@ class HTMLPSCHARS {
         this.topsy = createElement('h2');
         this.turvy = createElement('h3');
         this.droppa = createElement('h3');
+        this.ccrash = createElement('h3');
 
         this.status = createElement('h2');
         this.loc = createElement('h2');
@@ -241,6 +242,12 @@ class HTMLPSCHARS {
         this.droppa.style('width', '180px');
         this.droppa.style('background-color', 'rgba(0, 0, 0, 0.9)');
         this.droppa.style('opacity', '0');
+    }
+
+    cCrashAlert() {
+        this.ccrash.html("No collision : ON");
+        this.ccrash.position(300, 150);
+        this.ccrash.style('font-size', '35px');
     }
 
     gameWin() {
