@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="base.css">
-    
+
     <title>Taxi Sim 2D</title>
         
         <link rel="icon" href="thmb.png">
@@ -105,48 +105,23 @@
             color: black; }
         .error h2 { color: black; }
 
+
         @media only screen and (max-width: 1199px) {
-            .error { display: flex; }
-            .welc { display: none; }
-            .screenshort { display: none; }
-            #images { display: none; }
-            .playAr { display: none; }
-            #Limages { display: none; }
-            #Lfinally { display: none; } #finally { display: none; }
-            #Ltips { display: none; } #tips { display: none; } .tips { display: none; }
-            .introdSM { display: flex; }
-            .impre { display: none; }
-            #playGamea { display: none; } #scLT { display: none; }
-            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; }
-        }
-        @media only screen and (max-width: 750px) {
-            .intro { flex-direction: column; }
-            .tips { padding: 20px; }
-            .menu.active .word { position: fixed; top: 0px; left: calc(10vw);}
-        }
-        @media only screen and (max-width: 860px) {
-            .req { flex-direction: column; height: max-content; align-items: center; }
-            .infor { padding: 30px 50px 30px 60px; }
-            .credits .p5 { flex-direction: column; }
-            .error { flex-direction: column; }
-            .error ion-icon { font-size: 40vh; }
-        }
-        @media only screen and (max-width:590px) {
-            .features .cards { flex-direction: column; }
-        }
-        @media only screen and (max-width:450px) {
-            .infor { padding: 30px 10px 30px 20px; }
-            .menu.toggle { top: 0px; right: 0px; }
-        }
-
-        @media only screen and (max-width: 400px) {
-            .intro { height: min-content; }
-        }
-
-        @media only screen and (max-height: 500px) {
-            .intro { height: min-content; }
-            .credits { height: min-content; }
-        }
+            .error { display: flex; } .welc { display: none; } .screenshort { display: none; } #images { display: none; }
+            .playAr { display: none; } #Limages { display: none; } #Lfinally { display: none; } #finally { display: none; }
+            #Ltips { display: none; } #tips { display: none; } .tips { display: none; } .introdSM { display: flex; }
+            .impre { display: none; } #playGamea { display: none; } #scLT { display: none; }
+            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; } }
+        @media only screen and (max-width: 750px) { .intro { flex-direction: column; } .tips { padding: 20px; } 
+        .menu.active .word { position: fixed; top: 0px; left: calc(10vw);} .cont .inLinks a { opacity: 0.9; } }
+        @media only screen and (max-width: 860px) { .req { flex-direction: column; height: max-content; align-items: center; }
+            .infor { padding: 30px 50px 30px 60px; } .credits .p5 { flex-direction: column; } .error { flex-direction: column; }
+            .error ion-icon { font-size: 40vh; } .cont .log { display: none; } .cont .sepe { display: none; } }
+        @media only screen and (max-width:590px) { .features .cards { flex-direction: column; } }
+        @media only screen and (max-width:450px) { .infor { padding: 30px 10px 30px 20px; } .menu.toggle { top: 0px; right: 0px; } }
+        @media only screen and (max-width: 400px) { .intro { height: min-content; } }
+        @media only screen and (max-height: 500px) { .intro { height: min-content; } }
+        @media only screen and (max-height:800px) { .credits { height: min-content; } }
     </style>
 
     <title>Document</title>
@@ -157,11 +132,9 @@
         <div class="line"></div>
     </div>
 
-    <div class="nav">
-        <div class="ts2d">
-            <h4>TAXI Sim 2D</h4>
-        </div>
-    </div>
+   <div class="ts2d">
+       <h1 class="ts2dT">SIM</h1>
+   </div>
 
     <div class="sidenav" id="sidnav">
         <a id="topp" class="sidactive" href="#toppa"><span class="tooltiptext">First Intro</span><ion-icon name="information-circle-outline"></ion-icon></a>
@@ -174,47 +147,39 @@
     </div>
 
     <div class="menu">
-        <div class="toggle"><ion-icon name="reorder-three-outline"></ion-icon></div>
-        <div class="word"><p id="word"></p></div>
-        <div class="content">
-        <li style="--i:0;" id="MSintro">
-            <a href="#toppa"><ion-icon name="information-circle-outline"></ion-icon></a>
-        </li>
-        <li style="--i:1;" id="MSwhat">
-            <a href="#Lintro"><ion-icon name="help-circle-outline"></ion-icon></a>
-        </li>
-        <li style="--i:2;" id="MSreq">
-            <a href="#Lreq"><ion-icon name="create-outline"></ion-icon><ion-icon name="checkmark-outline"></ion-icon></a>
-        </li>
-        <li style="--i:3;" id="MSdetails">
-            <a href="#Ldetails"><ion-icon name="newspaper-outline"></ion-icon></a>
-        </li>
-        <li style="--i:4;" id="MSimage">
-            <a href="#Limages"><ion-icon name="images-outline"></ion-icon></a>
-        </li>
-        <li style="--i:5;" id="MSgame">
-            <a href="#playGame"><ion-icon name="game-controller-outline"></ion-icon></a>
-        </li>
-        <li style="--i:6;" id="MStips">
-            <a href="#Ltips"><ion-icon name="bulb-outline"></ion-icon></a>
-        </li>
-        <li style="--i:7;" id="MSstats">
-            <a href="#Lcredits"><ion-icon name="stats-chart-outline"></ion-icon><ion-icon name="ribbon-outline"></ion-icon></a>
-        </li>
+        <div class="toggle"><ion-icon style="color: black;" name="reorder-three-outline"></ion-icon></div>
+        <div class="area"></div>
+        <div class="cont" id="menucontent">
+            <div class="inLinks">
+                <a id="MSwhat" href="#toppa"><ion-icon name="help-circle-outline"></ion-icon> Introduction</a>
+                <a id="MSreq" href="#Lreq"><ion-icon name="create-outline"></ion-icon> Requirements</a>
+                <a id="MSdetails" href="#Ldetails"><ion-icon name="newspaper-outline"></ion-icon> Brief Info</a>
+                <a id="MSgame" href="#playGame"><ion-icon name="game-controller-outline"></ion-icon> Play the Game!</a>
+                <a id="MSstats" href="#Lcredits"><ion-icon name="ribbon-outline"></ion-icon> Credits</a>
+                <p style="font-size: 2vh; color: black; opacity: 0.8;" >* There are no external pages.</p>
+            </div>
+            <div class="sepe"></div>
+            <div class="log">
+                <h2>TAXI</h2>
+                <h2>Sim</h2>
+                <h2>2D</h2>
+            </div>
         </div>
     </div>
 
-    <div class="introdSM">
+    <div id="toppa">
+    <div class="introdSM" id="toppa2">
         <h2>Taxi</h2>
         <h2>Sim</h2>
         <h2>2D</h2>
     </div>
 
-    <div id="toppa" class="impre" id="Lintro">
+    <div class="impre" id="Lintro">
         <picture class="fader-anim">
-            <source type="image/avif" srcset="thumbnailv.avif" title="Overview and Legend : TAXI Sim 2D" alt="Overview and Legend : TAXI Sim 2D" />
-            <img id="ima" class="defim" src="thumbnailv.png" title="Overview and Legend : TAXI Sim 2D" alt="Overview and Legend : TAXI Sim 2D">
+            <source type="image/avif" srcset="thumbnailv.avif" title="TAXI Sim 2D" alt="TAXI Sim 2D" />
+            <img id="ima" class="defim" src="thumbnailv.png" title="TAXI Sim 2D" alt="TAXI Sim 2D">
         </picture>
+    </div>
     </div>
 
     <div>
@@ -468,48 +433,11 @@
         toggle.onclick = () => {
             menu.classList.toggle('active');
         }
-        var sel = document.querySelectorAll('.menu > li');
-        sel.onclick = () => {
-            menu.classList.remove('.active');
+        document.getElementById("menucontent").onclick = () => {
+            menu.classList.remove('active');
         }
     </script>
 
-    <script>
-        var wordin = document.getElementById("word");
-        var intro = document.getElementById("MSintro");
-        var what = document.getElementById("MSwhat");
-        var req = document.getElementById("MSreq");
-        var details = document.getElementById("MSdetails");
-        var image = document.getElementById("MSimage");
-        var game =  document.getElementById("MSgame");
-        var tips = document.getElementById("MStips");
-        var stats = document.getElementById("MSstats");
-
-        intro.onmouseover = () => {
-            wordin.innerHTML = "First Impression";
-        }
-        what.onmouseover = () => {
-            wordin.innerHTML = "Introduction";
-        }
-        req.onmouseover = () => {
-            wordin.innerHTML = "Requirements";
-        }
-        details.onmouseover = () => {
-            wordin.innerHTML = "Brief Details";
-        }
-        image.onmouseover = () => {
-            wordin.innerHTML = "Screenshots";
-        }
-        game.onmouseover = () => {
-            wordin.innerHTML = "Play : TAXI SIM 2D";
-        }
-        tips.onmouseover = () => {
-            wordin.innerHTML = "Tips & Tricks";
-        }
-        stats.onmouseover = () => {
-            wordin.innerHTML = "Credits & Stats";
-        }
-    </script>
     <script type="text/Javascript">
         window.addEventListener('scroll', reveal);
         function reveal(){
