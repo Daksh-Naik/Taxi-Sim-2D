@@ -82,4 +82,4 @@ a:hover { color: var(--white); text-decoration: 1px underline var(--orange) soli
 @keyframes rotateLine { 0% { transform: rotate(0deg); } 10% { transform: rotate(45deg); } 20% { transform: rotate(90deg); }
     30% { transform: rotate(135deg); } 40% { transform: rotate(180deg); } 50% { transform: rotate(360deg); } 60% { transform: rotate(180deg); }
     70% { transform: rotate(135deg); } 80% { transform: rotate(90deg); } 90% { transform: rotate(45deg); } 100% { transform: rotate(0deg); } }
-@keyframes backGR { 0% { background-color: var(--hotpink); } 25% { background-color: var(--taxiYellow); } 50% { background-color: var(--skyblue); } 75% { background-color: var(--orange); } 100% { background-color: var(--black); } }
+@keyframes backGR { 0% { background-color: var(--hotpink); } 20% { background-color: var(--taxiYellow); } 40% { background-color: var(--skyblue); } 60% { background-color: var(--orange); } 80% { background-color: var(--black); } 100% { background-color: var(--hotpink); } }
