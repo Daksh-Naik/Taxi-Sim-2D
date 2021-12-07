@@ -17,7 +17,7 @@ a:hover { color: var(--white); text-decoration: 1px underline var(--orange) soli
 .loader { position: fixed; z-index: 1000; display: flex; justify-content: center; align-items: center;
     height: 100vh; width: 100vw; background-color: black; animation: backGR 3s infinite; }
 .loader::after { content: 'Loading 🚖'; position: fixed; display: flex; justify-content: center; align-items: center;
-    height: 100%; font-size: 20vh ; color: rgba(255, 255, 255, 0.2); }
+    height: 100%; font-size: 10vw ; color: rgba(255, 255, 255, 0.2); }
 .loader .line { z-index: 100; height: 50vh; width: 1px; background: var(--white); animation: rotateLine 5s infinite; }
 .loader.active { opacity: 0; }
 .impre { display: flex; justify-content: center; align-items: center; height: 100vh; }
