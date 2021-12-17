@@ -29,7 +29,7 @@
         <meta name="description" content="Taxi Sim 2D P5 : Game Menu - Index | Hosted by Github Pages | Made by Daksh Naik">
 
     <style>
-        #playGamea ion-icon { color: var(--hotpink); }
+        #playGamea ion-icon { color: var(--hotpink); text-shadow: 1px 1px 15px black; }
         .welc { height: 100vh; background-color: var(--skyblue); color: black; display: flex; justify-content: space-evenly;
             align-items: center; flex-direction: column; padding: 20px 50px 20px 50px; text-align: center; }
         .welc h3 { font-size: 20px; color: black; } .welc h2 { font-size: 10vh; color: black; }
@@ -47,7 +47,7 @@
         .intro .text .det::after { content: " ⇩"; opacity: 0;  }
         .intro .text .det:hover { text-decoration: none; background-color: rgba(0, 0, 0, 0.500); color: white; }
         .intro .text:hover .det::after { content: " ⇩"; opacity: 1; position: relative; right: 0px; }
-        .intro .image { flex: 40; font-size: 5em; color: var(--taxiYellow); width: max-content; }
+        .intro .image { flex: 40; font-size: 5em; color: var(--taxiYellow); width: max-content; color: var(--taxiYellow); }
 
         .features { text-align: center;  padding: 30px; }
         .features .cards { margin: 30px 0px 0px 0px; display: flex; justify-content: space-evenly; align-items: center; }
@@ -63,7 +63,6 @@
         .req .card ion-icon { color: black; }
 
         .infor { padding: 30px 320px 30px 60px; }
-
         .screenshort { margin: 30px 10px 30px 10px; display: flex; justify-content: center; align-items: center; flex-direction: column; }
         .screenshort img { width: max-content; }
 
@@ -83,7 +82,7 @@
         .tips { padding: 20px 250px 20px 50px; }
         .tips .text { background-color: rgba(255, 255, 255, 0.03); padding: 20px; }
 
-        .credits { padding: 50vh 20px 40px 20px; background: linear-gradient(to bottom, #000000 0%, var(--orange) 40%);
+        .credits { padding: 10vh 20px 40px 20px; background: linear-gradient(to bottom, #000000 0%, var(--orange) 20%);
             height: calc(100vh * 2); color: black; text-align: center; display: flex; justify-content: center; 
             align-items: center; flex-direction: column;}
         .credits h2 { color: black; margin-top: 40px; } .credits h3 { margin-top: 30px; color: black; } .credits a { color: black; }
@@ -105,20 +104,21 @@
             color: black; }
         .error h2 { color: black; }
 
+        .finale { padding: 3vh 2vw 3vh 2vw; text-align: right; background-color: black; color: white; font-style: italic; }
 
         @media only screen and (max-width: 1199px) {
             .error { display: flex; } .welc { display: none; } .screenshort { display: none; } #images { display: none; }
             .playAr { display: none; } #Limages { display: none; } #Lfinally { display: none; } #finally { display: none; }
             #Ltips { display: none; } #tips { display: none; } .tips { display: none; } .introdSM { display: flex; }
             .impre { display: none; } #playGamea { display: none; } #scLT { display: none; }
-            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; } #SIintro { display: none;} }
-        @media only screen and (max-width: 750px) { .intro { flex-direction: column; } .tips { padding: 20px; } 
-        .menu.active .word { position: fixed; top: 0px; left: calc(10vw);} .cont .inLinks a { opacity: 0.9; } }
+            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; } }
+        @media only screen and (max-width: 750px) { .intro { flex-direction: column; height: min-content; } .tips { padding: 20px; } 
+        .menu.active .word { position: fixed; top: 0px; left: calc(10vw);} .cont .inLinks a { opacity: 0.9; } .sidenav { display: none; } }
         @media only screen and (max-width: 860px) { .req { flex-direction: column; height: max-content; align-items: center; }
             .infor { padding: 30px 50px 30px 60px; } .credits .p5 { flex-direction: column; } .error { flex-direction: column; }
             .error ion-icon { font-size: 40vh; } .cont .log { display: none; } .cont .sepe { display: none; } }
         @media only screen and (max-width:590px) { .features .cards { flex-direction: column; } }
-        @media only screen and (max-width:450px) { .infor { padding: 30px 10px 30px 20px; } .menu.toggle { top: 0px; right: 0px; } .sidenav{ display: none; }}
+        @media only screen and (max-width:450px) { .infor { padding: 30px 10px 30px 20px; } .menu.toggle { top: 0px; right: 0px; } }
         @media only screen and (max-width: 400px) { .intro { height: min-content; } }
         @media only screen and (max-height: 500px) { .intro { height: min-content; } }
         @media only screen and (max-height:800px) { .credits { height: min-content; } }
@@ -138,11 +138,11 @@
 
     <div class="sidenav" id="sidnav">
         <a id="topp" class="sidactive" href="#toppa"><span class="tooltiptext">First Intro</span><ion-icon name="information-circle-outline"></ion-icon></a>
-        <a id="SIintro" href="#Lintro"><span class="tooltiptext">Intro</span><ion-icon name="help-circle-outline"></ion-icon></a>
+        <a id="intro" href="#Lintro"><span class="tooltiptext">Intro</span><ion-icon name="help-circle-outline"></ion-icon></a>
         <a id="req" href="#Lreq"><span class="tooltiptext">Specs</span><ion-icon name="cog-outline"></ion-icon></a>
         <a id="Details" href="#Ldetails"><span class="tooltiptext">Details</span><ion-icon name="newspaper-outline"></ion-icon></a>
         <a href="#Limages" id="scLT"><span class="tooltiptext">Images</span><ion-icon name="images-outline"></ion-icon></a>
-        <a id="playGamea" href="#playGame" style="color: rgb(128, 255, 128); text-shadow: 1px 1px 10px black; font-size: 25px;"><span class="tooltiptext">Play the Game</span><ion-icon name="game-controller-outline"></ion-icon></a>
+        <a id="playGamea" href="#playGame" style="color: var(--hotpink); box-shadow: inset -2px 2px 20px 0px rgba(255, 255, 255, 0.233);"><span class="tooltiptext">Play the Game</span><ion-icon name="game-controller-outline"></ion-icon></a>
         <a id="credits" href="#Lcredits"><span class="tooltiptext">Credits</span><ion-icon name="ribbon"></ion-icon></a>
     </div>
 
@@ -151,7 +151,7 @@
         <div class="area"></div>
         <div class="cont" id="menucontent">
             <div class="inLinks">
-                <a id="MSwhat" href="#toppa"><ion-icon name="help-circle-outline"></ion-icon> Introduction</a>
+                <a id="MSwhat" href="#Lintro"><ion-icon name="help-circle-outline"></ion-icon> Introduction</a>
                 <a id="MSreq" href="#Lreq"><ion-icon name="create-outline"></ion-icon> Requirements</a>
                 <a id="MSdetails" href="#Ldetails"><ion-icon name="newspaper-outline"></ion-icon> Brief Info</a>
                 <a id="MSgame" href="#playGame"><ion-icon name="game-controller-outline"></ion-icon> Play the Game!</a>
@@ -174,7 +174,7 @@
         <h2>2D</h2>
     </div>
 
-    <div class="impre" id="Lintro">
+    <div class="impre" id="toppa">
         <picture class="fader-anim">
             <source type="image/avif" srcset="thumbnailv.avif" title="TAXI Sim 2D" alt="TAXI Sim 2D" />
             <img id="ima" class="defim" src="thumbnailv.png" title="TAXI Sim 2D" alt="TAXI Sim 2D">
@@ -205,26 +205,23 @@
     </div>
 
     <div class="reveal">
-    <h2 class="code" id="Lintro">what</h2>
-    <div class="intro" id="intro">
+    <div class="intro" id="Lintro">
         <div class="text">
-            <h2 class="taxisim2d">Taxi Sim 2D</h2>
+            <h2 class="taxisim2d">Sim</h2>
             <p>TAXI Sim 2D is a Simulation - Arcade web-browser game, depicting a day in a life of a Taxi Driver. 
                 For now, this game is only available for <strong class="note">Desktop Browsers (Keyboard mandatory)</strong>
                 and for devices with <strong class="note">a minimum 1200 PX width</strong> resolutions. </p>
             <p>As the name suggests, this <strong class="note">Game is 2D</strong>, you are provided with a Taxi and a plethora
                 of components assigned that will assist you in your journey.</p>
-            <a href="#details" class="det">VIEW IN-DEPTH DETAILS</a>
+            <a href="#Ldetails" class="det">VIEW IN-DEPTH DETAILS</a>
         </div>
         <div class="image">
-            <h2>🚖</h2>
+            <h2 style="color: var(--taxiYellow);">🚖</h2>
         </div>
     </div>
-    <h2 class="codeend" id="intro">what</h2>
     </div>
 
     <div class="reveal">
-    <h2 class="code" id=Lfeatures>features</h2>
         <div class="features">
             <h2>Why should I play?</h2>
             <div class="cards">
@@ -256,12 +253,11 @@
                 </div>
             </div>
         </div>
-    <h2 class="codeend" id="features">features</h2>
     </div>
 
     <div class="reveal">
-    <h2 class="code" id="Lreq">requirements</h2>
-        <div class="req">
+        <h2 style="text-align: center; margin-top: 10vh;">Requirements & Specs</h2>
+        <div class="req" id="Lreq">
             <div class="card">
                 <h2>💻</h2>
                 <p>Desktop / Laptop is a must. <br> (Device must have a keyboard)</p>
@@ -285,12 +281,10 @@
                 <p>- Bandwidth : 8.40 MB</p>
             </div>
         </div>
-    <h2 class="codeend" id="req">requirements</h2>
     </div>
 
     <div class="reveal">
-    <h2 class="code" id="Ldetails">details</h2>
-        <div class="infor">
+        <div class="infor" id="Ldetails">
             <h2>Information</h2>
             <p>As it's 2D, the realism will curb your expectations. In raw words, you, as a Taxi Driver, have to search for fares,
                 drive upto / near them, pick and drop them at their desired destination. You'll be rewarded with XP. Drop atleast 3 Fares to win the game.</p>
@@ -310,12 +304,10 @@
             </p>
             <p>Don't worry, there are components assigned to assist you in your journey. Keep an eye on them always.</p>
         </div>
-    <h2 class="codeend" id="details">details</h2>
     </div>
 
     <div class="reveal">
-    <h2 class="code" id="Limages">images</h2>
-        <div class="screenshort">
+        <div class="screenshort" id="Limages">
             <h3>To get yourself familiar with the game, here are some images to get you an idea how the game is.</h3>
             <br><br><br>
             <h2>When in freefroam :</h2>
@@ -330,11 +322,9 @@
                 <img src="screenshotmis.png" title="Taxi Sim 2D Mission : Example" />
             </picture>
         </div>
-    <h2 class="codeend" id="images">images</h2>
     </div>
 
     <div class="reveal">
-    <h2 class="code" id="Lfinally">finally</h2>
         <div class="playAr" id="playGame">
                 <h2>Ready to play?</h2>
                 <h3>Read the stuff in-game very well to get yourself going.</h3>
@@ -343,12 +333,11 @@
                 <br>
                 <h2><a href="game/index.html" class="button" target="_blank">Play : Taxi Sim 2D</a></h2>
             </div>
+            <i style="color: black;">Stable release : v2.04</i>
         </div>
-    <h2 class="codeend" id="finally">finally</h2>
     </div>
 
     <div class="reveal">
-    <h2 class="code" id="Ltips">tips</h2>
         <div class="tips">
             <div class="text">
                 <h2>Tips & Tricks</h2>
@@ -358,12 +347,10 @@
                    4. Keep your speed below 25 PX/MS if you're a beginner. </p>
             </div>
         </div>
-    <h2 class="codeend" id="tips">tips</h2>
     </div>
 
-    <h2 class="code" id="Lcredits">credits</h2>
-        <div class="credits">
-            <h2>Stats & Credits</h2>
+        <div class="credits" id="Lcredits">
+            <h2 style="font-size: 8vh;">Stats & Credits</h2>
             <h3>Javascript Libraries Used : </h3>
             <div class="p5">
                 <a href="https://p5js.org/" target="_blank" rel="norefferer">P5.JS</a>
@@ -396,10 +383,14 @@
             <br></br>
             <h3>Total time taken to develop : about 94 Hours</h3>
         </div>
-    <h2 class="codeend" id="credits">credits</h2>
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 20vh; text-align: center;">
+    <!-- <div style="display: flex; justify-content: center; align-items: center; height: 20vh; text-align: center;">
         <h3>Website, Game, Designed and Developed by : <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer">Daksh N</a></h3>
+    </div> -->
+
+    <div class="finale">
+        <p style="font-size: 2vh;">Website, Game, designed and developed by : <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer" style="font-size: 2vh;">Daksh N</a>
+        <br>Hosted by : Github Pages</p>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
