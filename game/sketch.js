@@ -1,9 +1,9 @@
 //TAXI SIM 2D P5 - A WEB BROWSER GAME - SKETCH FILE
-// LAST EDIT : 29 NOV 2021
+// LAST EDIT : 21 DEC 2021
 p5.disableFriendlyErrors = true;
 
 var taxi, taxiImage, taxiCFImage, speed, menu = false, help = false;
-var dash, markD = 0, endS;
+var dash, markD = 0, endS, aPn = 0;
 var Greensville, Parkvillia, BernardAvenue, Stratum;
 var Warkhandem;
 var htmlps;
@@ -227,9 +227,6 @@ function setup() {
     nav2e52int = createSprite(280, -74000, 200, 24);
     nav2e52int.addImage(nav2e52intimage);
 
-    dash = createSprite(1050, 0, 550, 2000);
-    dash.shapeColor = rgb(20, 20, 20);
-
     taxi = createSprite(100, 0, 50, 100);
     taxi.addImage(taxiImage);
 
@@ -372,8 +369,6 @@ function draw() {
 
     camera.position.x = width / 2;
     camera.position.y = taxi.y - 240;
-
-    dash.y = taxi.y - 150;
 
     frontGRL.y = taxi.y - 75;
     frontGRL.x = taxi.x;
@@ -1219,9 +1214,8 @@ function draw() {
             }
         }
 
-        if (fareMis) {
+        if (fareMis && gameState === Play) {
             htmlps.topsy.style('opacity', '1');
-            htmlps.droppa.style('opacity', '1');
             htmlps.turvy.style('opacity', '1');
         } else if (!fareMis) {
             htmlps.topsy.style('opacity', '0');
@@ -1243,8 +1237,17 @@ function draw() {
                         htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
                         htmlps.turvy.style('opacity', '1');
+                    }  else if (FDestina4 > 0 && !CF) {
+                        htmlps.turvy.style('opacity', '0');
+                    } else if (FDestina4 > 0 && CF) {
+                        htmlps.turvy.style('opacity', '1');
+                    } else if (FDestina4 < 0 && !CF) {
+                        htmlps.turvy.style('opacity', '1');
+                    } else if (FDestina4 < 0 && CF) {
+                        htmlps.turvy.style('opacity', '0');
                     }
-                    if (FDestina4 < 1000 || FDestina4 > -750) {
+                
+                    if (FDestina4 < 1000 || FDestina4 < -750) {
                         htmlps.droppa.style('opacity', '1')
                     } else {
                         htmlps.droppa.style('opacity', '0');
@@ -1690,13 +1693,13 @@ function draw() {
             }
 
         }
-        if (!fareMis && gameState === Play) {
+        if (!fareMis) {
             htmlps.dropOff.style('opacity', '0');
             htmlps.distanceDestina.style('opacity', '0');
             htmlps.distanceDestinaEa.style('opacity', '0');
             htmlps.timerEas.style('opacity', '0');
             htmlps.timerE.style('opacity', '0');
-        } else if (fareMis && gameState === Play) {
+        } else if (fareMis) {
             htmlps.dropOff.style('opacity', '1');
             htmlps.distanceDestinaEa.style('opacity', '1');
             htmlps.distanceDestinaEa.style('opacity', '1');
@@ -1717,7 +1720,7 @@ function draw() {
                 htmlps.guide.style('white-space', 'break-space')
             } else {
                 pedsFGroup.get(i).velocityY = -2;
-                htmlps.guide.html("ⓘ Drive up and touch the circle with your taxi to receive information.")
+                htmlps.guide.html("ⓘ Look for fares, touch the fare circle with your taxi to receive information.")
                 htmlps.guide.style('white-space', 'break-space')
             }
         }
@@ -2052,6 +2055,7 @@ function draw() {
     } else if (keyWentDown("P") && gameState === Pause) {
         gameState = Play;
         htmlps.pause.style('opacity', '0');
+        aPn = 0;
     }
 
     if (gameState === Pause) {
@@ -2077,7 +2081,7 @@ function draw() {
         taxi.velocityY = 0;
         taxi.velocityX = 0;
         document.body.style.backgroundColor = "rgb(105, 0, 0)";
-        setTimeout(autoEnd, 7000);
+        document.getElementById("DashboardBackground").classList.add('red');
     }
 
     if (gameState === Due) {
@@ -2087,8 +2091,8 @@ function draw() {
         taxi.velocityY = 0;
         taxi.velocityX = 0;
         htmlps.gameDue();
-        document.body.style.backgroundColor = "rgb(255, 65, 36)";
-        setTimeout(autoEnd, 7000);
+        document.body.style.backgroundColor = "rgb(105, 0, 0)";
+        document.getElementById("DashboardBackground").classList.add('red');
     }
 
     if (gameState === Due && keyDown("E") || gameState === End && keyDown("E")) {
@@ -2119,16 +2123,16 @@ function defTTDCounter() {
     }
 }
 
-function autoEnd() {
-        window.location.reload();
-}
-
 function boundarOpa() {
     htmlps.boundar.style('opacity', '0');
 }
 
 function feedBOpa() {
     htmlps.fedB.style('opacity', '0');
+}
+
+function autoPause() {
+        aPn++;
 }
 
 //Oh my god so many useless lines (I know I know I wanted to make it DRY but didnt had enough time to think :())
