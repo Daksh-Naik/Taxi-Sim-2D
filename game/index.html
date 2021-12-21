@@ -13,7 +13,7 @@
 
         <meta property="og:title" content="Taxi Sim 2D P5 - a Web Browser Game"/>
         <meta property="og:description" content="Taxi Sim 2D P5 , a Web-Game purely created by P5.PLAY.JS and P5.DOM. | Hosted by : Github-Pages."/>
-        <meta property="og:url" content="https://daksh-naik.github.io/Taxi-Sim-2D/game/index.html"/>
+        <!-- <meta property="og:url" content="https://daksh-naik.github.io/Package-Delivery-Sim-2D/"/> -->
         <meta property="og:type" content="game"/>
         <meta property="og:locale" content="en_IN" />
         <meta property="og:image" content="images/thumbnailv.png"/> 
@@ -29,6 +29,7 @@
     <title>Taxi Sim 2D</title>
 
     <style type="text/css">
+        body > div:nth-child(11) { background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, #000000 80%) }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
         ::-webkit-scrollbar-thumb { background: yellow; }
@@ -41,7 +42,7 @@
         .introdSM h2:nth-child(3) { color: rgb(255, 0, 72); }
         *{ font-variant-numeric: tabular-nums; padding: 0; margin: 0; box-sizing: border-box; color: white; 
             font-family: 'Trebuchet MS'; transition: 0.3s ease; user-select: none;}
-        body { overflow-y: hidden;  background-color: black; } html { scroll-behavior: smooth;}
+        body { overflow-y: hidden;  background-color: black; overflow-x: hidden; } html { scroll-behavior: smooth;}
         h1, h3, h4 { text-align: center; transition: 0.3s ease; padding: 10px; background-color: rgba(0, 0, 0, 0.5); 
             text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);}
         body > h1 { box-shadow: inset -12px -4px 20px 2px rgb(255 255 255 / 10%)}
@@ -68,16 +69,19 @@
             height: 100%; font-size: 100px ; color: rgba(255, 255, 255, 0.2); }
         .loader .line { z-index: 100; height: 50vh; width: 1px; background: var(--white); animation: rotateLine 5s infinite; }
         .loader.active { opacity: 0; }
+        body > h3:nth-child(19) { backdrop-filter: blur(12px); }
         @keyframes rotateLine { 0% { transform: rotate(0deg); } 10% { transform: rotate(45deg); } 20% { transform: rotate(90deg); }
     30% { transform: rotate(135deg); } 40% { transform: rotate(180deg); } 50% { transform: rotate(360deg); } 60% { transform: rotate(180deg); }
     70% { transform: rotate(135deg); } 80% { transform: rotate(90deg); } 90% { transform: rotate(45deg); } 100% { transform: rotate(0deg); } }
         .large { background-color: rgba(0, 0, 0, 0.5);  display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        #DashboardBackground.red { background: linear-gradient(to right, rgba(105, 0, 0, 0.5) 0%, rgb(105, 0, 0) 90%) }
         @media only screen and (max-width:1145px) {
             canvas { display: none; }
             h1, h2, h3, h4 { display: none; }
             h5 { display: block; }
             #p5_loading { display: none; }
             .error { display: flex; }
+            #DashboardBackground { display: none; }
         }
 
     @media only screen and (min-width:1400px) {
