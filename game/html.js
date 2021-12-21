@@ -2,6 +2,7 @@ class HTMLPSCHARS {
     constructor() {
 
         this.title = createElement('h1');
+        this.dash = createElement('div');
         this.restart = createElement('h2');
         this.startinst = createElement('h2');
         this.alert = createElement('h2');
@@ -51,7 +52,13 @@ class HTMLPSCHARS {
         this.title.style('border-radius', '10px');
         this.title.style('padding', '20px');
         this.title.style('margin', '1px');
+        this.title.style('z-index', '5');
 
+        this.dash.position(750, 0);
+        this.dash.id("DashboardBackground")
+        this.dash.style('background-color', 'rgba(0, 0, 0, 0.8)');
+        this.dash.style('width', '40vw');
+        this.dash.style('height', '100vh');
     }
 
     startDisplay() {
@@ -282,6 +289,8 @@ class HTMLPSCHARS {
         this.XP.hide();
         this.ttD.html("⌚ Total time driven : "+totaltimeD+" s");
         this.droppa.hide(); 
+        this.turvy.hide();
+        this.dash.hide();
     }
 
     gameDue() {
