@@ -53,6 +53,7 @@ class HTMLPSCHARS {
         this.title.style('padding', '20px');
         this.title.style('margin', '1px');
         this.title.style('z-index', '5');
+        this.title.id("Title");
 
         this.dash.position(750, 0);
         this.dash.id("DashboardBackground")
@@ -84,7 +85,8 @@ class HTMLPSCHARS {
         this.pause.style('background-color', 'rgba(0, 0, 0, 0.6)');
         this.pause.style('opacity', '0');
         this.pause.style('padding', '10px');
-        this.pause.style('font-size', '40px')
+        this.pause.style('font-size', '40px');
+        this.pause.id("Pauser")
     }
 
     playCompo() {
@@ -105,6 +107,7 @@ class HTMLPSCHARS {
         this.guide.style('width', '250px');
         this.guide.style('line-height', '1.5');
         this.guide.style('white-space', 'break-spaces');
+        this.guide.id("Guide")
 
         this.jobDo.html("☑ Fares done : "+fareCo+" /3");
         this.jobDo.position(1000, 465);
@@ -242,7 +245,7 @@ class HTMLPSCHARS {
         this.timerEas.position(10, 500);
         this.timerEas.html("⏳ "+time +" s");
 
-        this.distanceDestinaEa.position(650, 200);
+        this.distanceDestinaEa.position(620, 200);
 
         this.droppa.html("ⓘ Drop the fare in the yellow designated area.");
         this.droppa.position(600, 490);
