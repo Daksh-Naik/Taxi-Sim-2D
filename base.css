@@ -27,6 +27,11 @@ a:hover { color: var(--black2); text-decoration: 1px underline var(--orange) sol
 .impre { display: flex; justify-content: center; align-items: center; height: 100vh; }
 .defim { width:max-content; margin: 60px 0px 0px 0px; position: relative; top: -1000px; transition: 0.5s ease-out; z-index: -1; 
     border-radius: 0px 10vh 10vh 10vh; }
+
+::-webkit-scrollbar { width: 20px; background-color: black; transition: 0.5s; }
+::-webkit-scrollbar-track { background: black; }
+::-webkit-scrollbar-thumb { background:url(game/images/taxi/otaxi.png); border-radius: 2px; background-repeat:space; background-size: 3vh; }
+::-webkit-scrollbar-thumb:hover { background: url(game/images/taxi/otaxiCF.png); background-size: 3vh; background-repeat: space;}
     
 .menu { z-index: 750; position: fixed; top: 50px; right: 50px; font-size: 7vh; background-color: var(--hotpink); 
     border-radius: 100%; height: max-content; padding: 10px; transition: 0.3s ease-in; box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5); }
