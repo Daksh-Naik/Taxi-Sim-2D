@@ -29,9 +29,14 @@
         <meta name="description" content="Taxi Sim 2D P5 : Game Menu - Index | Hosted by Github Pages | Made by Daksh Naik">
 
     <style>
+        #toppa { overflow: hidden; position: relative; }
+        #picDIV::before {  content: ' '; top: -60vh; left: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
+            z-index: -5; border-bottom-right-radius: 20%; transform: rotate(51deg); overflow: hidden; }
+        #picDIV::after { content: ' '; top: -60vh; right: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
+            z-index: -5; border-bottom-left-radius: 20%; transform: rotate(-51deg); overflow: hidden; } 
         #playGamea ion-icon { color: var(--hotpink); text-shadow: 1px 1px 15px black; }
         .welc { height: 100vh; background-color: var(--skyblue); color: black; display: flex; justify-content: space-evenly;
-            align-items: center; flex-direction: column; padding: 20px 50px 20px 50px; text-align: center; }
+            align-items: center; flex-direction: column; padding: 20px 50px 20px 50px; text-align: center; border-radius: 90%/20% 20% 0% 0%; }
         .welc h3 { font-size: 20px; color: black; } .welc h2 { font-size: 10vh; color: black; }
         .welc .play a { text-decoration: none; background-color: var(--hotpink); padding: 20px 40px 20px 40px; margin: 40px 20px 40px 20px;
             color: black; box-shadow: 1px 1px 15px black; }
@@ -40,31 +45,35 @@
         .welc .read a::after { content: ' ⬇'; position: relative; opacity: 0; top: 0; right: -50px; overflow: hidden; }
         .welc .read a:hover::after {  opacity: 1; right: 0px; } .welc .read a:hover { background-color: var(--orange); color: var(--black); }
 
-        .intro {  height: 90vh; padding: 20px; display: flex; justify-content: space-around; align-items: center; text-align: center; }
-        .intro .text { flex: 60; display: flex; justify-content: center; flex-direction: column; align-items: center;}
+        .intro { height: 100vh; padding: 20px; display: flex; justify-content: space-around; align-items: center; text-align: center; background-color: var(--bg); }
+        .intro .text { flex: 60; display: flex; justify-content: center; flex-direction: column; align-items: center; color: var(--black2);}
         .intro .text .det { margin: 30px 0px 0px 0px; padding: 30px 30px 30px 30px; box-shadow: 1px 1px 15px rgba(255, 255, 255, 0.1); 
             background-color: var(--hotpink); color: black; width: max-content; border-radius: 10%; overflow: hidden; }
         .intro .text .det::after { content: " ⇩"; opacity: 0;  }
         .intro .text .det:hover { text-decoration: none; background-color: rgba(0, 0, 0, 0.500); color: white; }
         .intro .text:hover .det::after { content: " ⇩"; opacity: 1; position: relative; right: 0px; }
-        .intro .image { flex: 40; font-size: 5em; color: var(--taxiYellow); width: max-content; color: var(--taxiYellow); }
+        .intro .image { flex: 40; font-size: 5em; width: max-content;}
 
         .features { text-align: center;  padding: 30px; }
         .features .cards { margin: 30px 0px 0px 0px; display: flex; justify-content: space-evenly; align-items: center; }
         .features .cards .card { display: flex; justify-content: space-between; align-items: center; flex-direction: column; 
-            padding: 30px 20px; height: 40vh; flex: 50; }
+            padding: 30px 20px; height: 40vh; flex: 50; color: var(--black2); }
+        .features .cards .card:hover { background: var(--hotpink); }
         .features .cards .card h2 { color: var(--orange); border-radius: 100%; border: 1px var(--orange) solid; padding: 30px; }
 
-        .req { height: 90vh; padding: 30px; display: flex; justify-content: space-evenly; align-items: baseline; text-align: center;  }
+        .requ { background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bg) 10%); border-radius: 75%/20%; padding-top: 0.3vh; color: var(--black2); }
+        .req { height: 90vh; padding: 30px; display: flex; justify-content: space-evenly; align-items: baseline; text-align: center; }
         .req .card { flex: 30; border-radius: 20px 20px 50px 50px; display: flex; justify-content: center; align-items: center;
-            flex-direction: column; padding: 30px 10px 30px 10px; }
-        .req .card:hover { background-color: rgba(255, 255, 255, 0.03); box-shadow: inset -2px 3px 5px 0px rgba(128, 128, 128, 0.151) }
+            flex-direction: column; padding: 30px 10px 30px 10px; height: max-content; }
+        .req .card:hover { background-color: var(--skyblue); box-shadow: inset -2px 3px 5px 0px rgba(128, 128, 128, 0.151) }
         .req .card h2 { font-size: 30px; background-color: var(--skyblue); border-radius: 100%; padding: 30px; color: black; }
         .req .card ion-icon { color: black; }
 
-        .infor { padding: 30px 320px 30px 60px; }
-        .screenshort { margin: 30px 10px 30px 10px; display: flex; justify-content: center; align-items: center; flex-direction: column; }
-        .screenshort img { width: max-content; }
+        .infor { padding: 10vh 320px 10vh 60px; color: var(--black2); }
+        .screenshort { margin: 30px 10px 0vh 10px; display: flex; justify-content: center; align-items: center; flex-direction: column;
+             background-color: black; color: rgb(196, 196, 196); }
+        .screenshort img { width: max-content; height: max-content; }
+        .end { background: linear-gradient(to top, var(--orange) 0%, rgb(0, 0, 0) 70%); border-radius: 0% 0% 40% 40%; padding: 20vh 0vh; }
 
         .playAr { height: 100vh; padding: 30px 40px 30px 40px; background-color: var(--taxiYellow); color: black; text-align: center;
             display: flex; justify-content: space-evenly; align-items: center; flex-direction: column; }
@@ -79,10 +88,10 @@
         .playAr .button:hover::before { opacity: 1; }
         .playAr .button:hover { background-color: rgba(255, 255, 255, 0.3); font-size: 35px; }
 
-        .tips { padding: 20px 250px 20px 50px; }
+        .tips { padding: 20px 250px 20px 50px; color: var(--black2); }
         .tips .text { background-color: rgba(255, 255, 255, 0.03); padding: 20px; }
 
-        .credits { padding: 10vh 20px 40px 20px; background: linear-gradient(to bottom, #000000 0%, var(--orange) 20%);
+        .credits { padding: 10vh 20px 40px 20px; background: linear-gradient(to bottom, var(--bg) 0%, var(--orange) 20%);
             height: calc(100vh * 2); color: black; text-align: center; display: flex; justify-content: center; 
             align-items: center; flex-direction: column;}
         .credits h2 { color: black; margin-top: 40px; } .credits h3 { margin-top: 30px; color: black; } .credits a { color: black; }
@@ -104,20 +113,28 @@
             color: black; }
         .error h2 { color: black; }
 
-        .finale { padding: 3vh 2vw 3vh 2vw; text-align: right; background-color: black; color: white; font-style: italic; }
+        .finale { padding: 3vh 2vw 3vh 2vw; text-align: right; background: linear-gradient(to bottom, var(--orange) 0%, var(--black) 20%);
+            color: var(--white); font-style: italic; display: flex; justify-content: space-evenly; align-items: center; height: 100vh; }
+        .finale .taxiLog { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-size: 10vh;
+            font-style: normal; }
+        .finale .taxiLog h2 { opacity: 0.4; } .finale .taxiLog h2:hover { opacity: 1; }
+        .finale .taxiLog h2:nth-child(1) { color: var(--taxiYellow); } .finale .taxiLog h2:nth-child(2) { color: var(--skyblue); }
+        .finale .taxiLog h2:nth-child(3) { color: var(--hotpink); }
+        .finale a:hover { color: white; }
 
         @media only screen and (max-width: 1199px) {
             .error { display: flex; } .welc { display: none; } .screenshort { display: none; } #images { display: none; }
             .playAr { display: none; } #Limages { display: none; } #Lfinally { display: none; } #finally { display: none; }
-            #Ltips { display: none; } #tips { display: none; } .tips { display: none; } .introdSM { display: flex; }
+            #Ltips { display: none; } #tips { display: none; } .tips { display: none; } .introdSM { display: flex; background-color: rgba(0, 0, 0, 0.4); }
             .impre { display: none; } #playGamea { display: none; } #scLT { display: none; }
-            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; } }
+            #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; } .end { display: none; } }
+        @media only screen and (max-width:920px) { .finale { flex-direction: column-reverse; padding-top: 10vh; } }
         @media only screen and (max-width: 750px) { .intro { flex-direction: column; height: min-content; } .tips { padding: 20px; } 
         .menu.active .word { position: fixed; top: 0px; left: calc(10vw);} .cont .inLinks a { opacity: 0.9; } .sidenav { display: none; } }
         @media only screen and (max-width: 860px) { .req { flex-direction: column; height: max-content; align-items: center; }
             .infor { padding: 30px 50px 30px 60px; } .credits .p5 { flex-direction: column; } .error { flex-direction: column; }
             .error ion-icon { font-size: 40vh; } .cont .log { display: none; } .cont .sepe { display: none; } }
-        @media only screen and (max-width:590px) { .features .cards { flex-direction: column; } }
+        @media only screen and (max-width:590px) { .features .cards { flex-direction: column; } .cont .inLinks .theme { font-size: 2.5vh; } }
         @media only screen and (max-width:450px) { .infor { padding: 30px 10px 30px 20px; } .menu.toggle { top: 0px; right: 0px; } }
         @media only screen and (max-width: 400px) { .intro { height: min-content; } }
         @media only screen and (max-height: 500px) { .intro { height: min-content; } }
@@ -156,7 +173,7 @@
                 <a id="MSdetails" href="#Ldetails"><ion-icon name="newspaper-outline"></ion-icon> Brief Info</a>
                 <a id="MSgame" href="#playGame"><ion-icon name="game-controller-outline"></ion-icon> Play the Game!</a>
                 <a id="MSstats" href="#Lcredits"><ion-icon name="ribbon-outline"></ion-icon> Credits</a>
-                <p style="font-size: 2vh; color: black; opacity: 0.8;" >* There are no external pages.</p>
+                <h3 class="theme" id="themeSel" >Theme : Elegant Pastel (L)</h3>
             </div>
             <div class="sepe"></div>
             <div class="log">
@@ -175,9 +192,9 @@
     </div>
 
     <div class="impre" id="toppa">
-        <picture class="fader-anim">
+        <picture class="fader-anim" id="picDIV">
             <source type="image/avif" srcset="thumbnailv.avif" title="TAXI Sim 2D" alt="TAXI Sim 2D" />
-            <img id="ima" class="defim" src="thumbnailv.png" title="TAXI Sim 2D" alt="TAXI Sim 2D">
+            <img id="ima" class="defim" src="thumbnailvrb.png" title="TAXI Sim 2D" alt="TAXI Sim 2D">
         </picture>
     </div>
     </div>
@@ -216,14 +233,14 @@
             <a href="#Ldetails" class="det">VIEW IN-DEPTH DETAILS</a>
         </div>
         <div class="image">
-            <h2 style="color: var(--taxiYellow);">🚖</h2>
+            <h2 style="color: var(--black2); text-shadow: 1px 1px 12px var(--black);">🚖</h2>
         </div>
     </div>
     </div>
 
     <div class="reveal">
         <div class="features">
-            <h2>Why should I play?</h2>
+            <h2 style="color: var(--black2);">Why should I play?</h2>
             <div class="cards">
                 <div class="card">
                     <h2><ion-icon name="reorder-four-outline"></ion-icon></h2>
@@ -256,13 +273,15 @@
     </div>
 
     <div class="reveal">
+        <div class="requ" id="Lreq">
         <h2 style="text-align: center; margin-top: 10vh;">Requirements & Specs</h2>
-        <div class="req" id="Lreq">
+        <div class="req">
             <div class="card">
                 <h2>💻</h2>
                 <p>Desktop / Laptop is a must. <br> (Device must have a keyboard)</p>
                 <p>- Runs smooth on <strong class="note">Low Performance</strong> devices. <br>
                     (However, <strong class="note">Browser Hardware Acceleration</strong> is recommended, if you need higher FPS)</p>
+                <p>- GPU is recommended, but not a necessity. <br> Update your Integrated Graphics Drivers if necessary.</p>
             </div>
             <div class="card">
                 <h2><ion-icon name="browsers-outline"></ion-icon></h2>
@@ -278,8 +297,9 @@
                 <p><strong class="note">(On Integrated Graphics)</strong></p>
                 <p>- Avg. CPU Usage : 50% - 70%</p>
                 <p>- Avg. RAM Usage : 8% - 9%</p>
-                <p>- Bandwidth : 8.40 MB</p>
+                <p>- Network usage (download): <br> 8.40 MB</p>
             </div>
+        </div>
         </div>
     </div>
 
@@ -303,7 +323,6 @@
                 There are <strong class="note">9 different destination / missions</strong> in total and 4 Cities.
             </p>
             <p>Don't worry, there are components assigned to assist you in your journey. Keep an eye on them always.</p>
-            <p>* Game is updated on occasions. May contain some bugs for the due time.</p>
         </div>
     </div>
 
@@ -311,7 +330,7 @@
         <div class="screenshort" id="Limages">
             <h3>To get yourself familiar with the game, here are some images to get you an idea how the game is.</h3>
             <br><br><br>
-            <h2>When in freefroam :</h2>
+            <h2>When in freeroam :</h2>
             <picture>
                 <source type="image/avif" srcset="screenshotint.avif" title="Taxi Sim 2D Freeroaming : Example" />
                 <img src="screenshotint.png" title="Taxi Sim 2D Freeroaming : Example" />
@@ -323,6 +342,7 @@
                 <img src="screenshotmis.png" title="Taxi Sim 2D Mission : Example" />
             </picture>
         </div>
+        <div class="end"></div>
     </div>
 
     <div class="reveal">
@@ -334,7 +354,7 @@
                 <br>
                 <h2><a href="game/index.html" class="button" target="_blank">Play : Taxi Sim 2D</a></h2>
             </div>
-            <i style="color: black;">Stable release : v2.04  |  Latest update : 21 Dec '21</i>
+            <i style="color: black;">Stable release : v2.04</i>
         </div>
     </div>
 
@@ -382,12 +402,19 @@
             </div>
             <h2>Website and Game Hosted online by : Github Pages</h2>
             <br></br>
-            <h3>Total time taken to develop : about 94 Hours</h3>
+            <h3>Total time taken to develop : about 104 Hours</h3>
         </div>
 
     <div class="finale">
-        <p style="font-size: 2vh;">Website, Game, designed and developed by : <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer" style="font-size: 2vh;">Daksh N</a>
-        <br>Hosted by : Github Pages</p>
+        <div class="taxiLog">
+            <h2>TAXI</h2>
+            <h2>SIM</h2>
+            <h2>2D</h2>
+        </div>
+        <div style="text-align: center;">
+            <p style="font-size: 2vh;">Website, Game, designed and developed by : <br> <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer" style="font-size: 2vh;">Daksh N</a></p>
+            <p style="font-size: 2vh;" >Site hosted by : Github Pages</p>
+        </div>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -413,6 +440,41 @@
         window.onscroll = function() {
             skrld.style.opacity = 0;
         }
+    </script>
+
+    <script>
+        var dark = false;
+        var selR = document.querySelector(':root');
+        var selecTheme = document.getElementById("themeSel")
+
+        selecTheme.onclick = () => {
+            if (!dark) {
+                dark = true;
+                selecTheme.innerHTML = "Theme : Dark Raven (D)";
+                selR.style.setProperty('--bg', 'black');
+                selR.style.setProperty('--taxiYellow', 'rgb(253, 240, 1)');
+                selR.style.setProperty('--orange', 'rgb(255, 153, 0)');
+                selR.style.setProperty('--skyblue', 'rgb(113, 225, 249)');
+                selR.style.setProperty('--white', 'rgb(255, 255, 255)');
+                selR.style.setProperty('--hotpink', 'rgb(255, 0, 72)');
+                selR.style.setProperty('--black', 'rgb(0, 0, 0)');
+                selR.style.setProperty('--maroon', 'rgb(94, 25, 0)');
+                selR.style.setProperty('--black2', 'rgb(255, 255, 255)');
+            } else if (dark) {
+                dark = false;
+                selecTheme.innerHTML = "Theme : Elegant Pastel (L)";
+                selR.style.setProperty('--bg', 'rgb(240, 236, 227)');
+                selR.style.setProperty('--taxiYellow', 'rgb(252, 255, 166)');
+                selR.style.setProperty('--orange', 'rgb(195, 117, 0)');
+                selR.style.setProperty('--skyblue', 'rgb(181, 234, 234)');
+                selR.style.setProperty('--white', 'white');
+                selR.style.setProperty('--hotpink', 'rgb(255, 187, 204)');
+                selR.style.setProperty('--black', 'rgb(65, 68, 75)');
+                selR.style.setProperty('--maroon', 'rgb(94, 25, 0)');
+                selR.style.setProperty('--black2', 'rgb(65, 68, 75)')
+            }
+        }
+
     </script>
 
     <script>
