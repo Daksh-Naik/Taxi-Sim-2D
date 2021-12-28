@@ -30,9 +30,9 @@
 
     <style>
         #toppa { overflow: hidden; position: relative; }
-        #picDIV::before {  content: ' '; top: -60vh; left: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
+        .imageDEF::before {  content: ' '; top: -60vh; left: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
             z-index: -5; border-bottom-right-radius: 20%; transform: rotate(51deg); overflow: hidden; }
-        #picDIV::after { content: ' '; top: -60vh; right: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
+        .imageDEF::after { content: ' '; top: -60vh; right: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
             z-index: -5; border-bottom-left-radius: 20%; transform: rotate(-51deg); overflow: hidden; } 
         #playGamea ion-icon { color: var(--hotpink); text-shadow: 1px 1px 15px black; }
         .welc { height: 100vh; background-color: var(--skyblue); color: black; display: flex; justify-content: space-evenly;
@@ -60,12 +60,20 @@
             padding: 30px 20px; height: 40vh; flex: 50; color: var(--black2); }
         .features .cards .card:hover { background: var(--hotpink); }
         .features .cards .card h2 { color: var(--orange); border-radius: 100%; border: 1px var(--orange) solid; padding: 30px; }
+        .features ion-icon { color: var(--black2); }
+        .features .asier { display: flex; justify-content: space-evenly; align-items: center; height: 100vh; border-radius: 40% / 20%;  
+           background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bg) 40%); }
+        .features .asier h2 h3 p2 p { color: var(--black2); }
+        .features .asier .asierinf { padding: 1vw; display: flex; justify-content: space-evenly; align-items: center; flex-direction: column;
+            height: 70vh; }
+        .features .asier .asierinf h1 { font-size: 20vh; } .features .asierlog { padding: 2vw; }
+        .features #asierLogo { width: 20vw; margin: auto; transition: 0.3s; } .features #asierLogo:hover { filter: brightness(1.3)}
 
         .requ { background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bg) 10%); border-radius: 75%/20%; padding-top: 0.3vh; color: var(--black2); }
         .req { height: 90vh; padding: 30px; display: flex; justify-content: space-evenly; align-items: baseline; text-align: center; }
         .req .card { flex: 30; border-radius: 20px 20px 50px 50px; display: flex; justify-content: center; align-items: center;
             flex-direction: column; padding: 30px 10px 30px 10px; height: max-content; }
-        .req .card:hover { background-color: var(--skyblue); box-shadow: inset -2px 3px 5px 0px rgba(128, 128, 128, 0.151) }
+        .req .card:hover { background-color: var(--skyblue); box-shadow: inset -2px 3px 5px 0px rgba(128, 128, 128, 0.151); }
         .req .card h2 { font-size: 30px; background-color: var(--skyblue); border-radius: 100%; padding: 30px; color: black; }
         .req .card ion-icon { color: black; }
 
@@ -102,10 +110,11 @@
         .credits .logo { background-color: rgba(0, 0, 0, 0.1); padding: 30px; margin-top: 30px; }
         .credits .logo:hover { background-color: rgba(0, 0, 0, 0.500); color: var(--skyblue); border-radius: 25px; margin-top: 40px; }
         .credits .adv { display: flex; justify-content: space-around; align-items: center; }
+        .credits .logo:hover a { color: var(--white); }
 
         .introdSM { display: none; justify-content: center; align-items: center; height: 100vh; flex-direction: column;}
         .introdSM { font-size: 10vh; }
-        .introdSM h2 { text-shadow: 0px 1px 12px rgba(0, 0, 0, 0.5); }
+        .introdSM { text-shadow: 1px 1px 5px var(--black); }
         .introdSM h2:nth-child(1) { color: var(--taxiYellow); }
         .introdSM h2:nth-child(2) { color: var(--skyblue); }
         .introdSM h2:nth-child(3) { color: var(--hotpink); }
@@ -119,22 +128,31 @@
         .finale .taxiLog { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-size: 10vh;
             font-style: normal; }
         .finale .taxiLog h2 { opacity: 0.4; } .finale .taxiLog h2:hover { opacity: 1; }
-        .finale .taxiLog h2:nth-child(1) { color: var(--taxiYellow); } .finale .taxiLog h2:nth-child(2) { color: var(--skyblue); }
+        .finale .taxiLog h2:nth-child(1) { color: var(--taxiYellow); } 
+        .finale .taxiLog h2:nth-child(2) { color: var(--skyblue); }
         .finale .taxiLog h2:nth-child(3) { color: var(--hotpink); }
         .finale a:hover { color: white; }
+        @keyframes opac { 0% { opacity: 0.4; } 40% { opacity: 1; } 100% { opacity: 0.4; } }
+        @keyframes opac2 { 0% { opacity: 0.4; } 25% { opacity: 0.4; } 50% { opacity: 0.4; } 60% { opacity: 1; } 100% { opacity: 0.4; } }
+        @keyframes opac3 { 0% { opacity: 0.4; } 10% { opacity: 0.4; } 20% { opacity: 0.4; } 30% { opacity: 0.4; } 40% { opacity: 0.4; }
+            50% { opacity: 0.4; } 60% { opacity: 0.4; } 70% { opacity: 0.4; } 80% { opacity: 1; } 90% { opacity: 0.4; } 100% { opacity: 0.4 } }
 
         @media only screen and (max-width: 1199px) {
             .error { display: flex; } .welc { display: none; } .screenshort { display: none; } #images { display: none; }
             .playAr { display: none; } #Limages { display: none; } #Lfinally { display: none; } #finally { display: none; }
-            #Ltips { display: none; } #tips { display: none; } .tips { display: none; } .introdSM { display: flex; background-color: var(--bg); }
-            .impre { display: none; } #playGamea { display: none; } #scLT { display: none; }
+            #Ltips { display: none; } #tips { display: none; } .tips { display: none; } .introdSM { display: flex; background-color: rgba(0, 0, 0, 0.4); }
+            .impre { display: none; } #playGamea { display: none; } #scLT { display: none; } .scroldB { background-color: rgba(0, 0, 0, 0.4); }
             #MSimage { display: none; } #MSgame { display: none; } #MStips { display: none; } .end { display: none; } }
-        @media only screen and (max-width:920px) { .finale { flex-direction: column-reverse; padding-top: 10vh; } }
+        @media only screen and (max-width:920px) { .finale { flex-direction: column-reverse; padding-top: 10vh; } 
+           .features .asier { flex-direction: column; } .features #asierLogo { width:40vw } }
         @media only screen and (max-width: 750px) { .intro { flex-direction: column; height: min-content; } .tips { padding: 20px; } 
         .menu.active .word { position: fixed; top: 0px; left: calc(10vw);} .cont .inLinks a { opacity: 0.9; } .sidenav { display: none; } }
         @media only screen and (max-width: 860px) { .req { flex-direction: column; height: max-content; align-items: center; }
             .infor { padding: 30px 50px 30px 60px; } .credits .p5 { flex-direction: column; } .error { flex-direction: column; }
-            .error ion-icon { font-size: 40vh; } .cont .log { display: none; } .cont .sepe { display: none; } }
+            .error ion-icon { font-size: 40vh; } .cont .log { display: none; } .cont .sepe { display: none; }
+            .finale .taxiLog h2:nth-child(1) { color: var(--taxiYellow); animation: opac 3s cubic-bezier(0, 0, 0, 1.02) infinite; } 
+            .finale .taxiLog h2:nth-child(2) { color: var(--skyblue); animation: opac2 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) infinite; }
+            .finale .taxiLog h2:nth-child(3) { color: var(--hotpink); animation: opac3 3s cubic-bezier(0.73, 0.33, 0.45, 0.94) infinite; } }
         @media only screen and (max-width:590px) { .features .cards { flex-direction: column; } .cont .inLinks .theme { font-size: 2.5vh; } }
         @media only screen and (max-width:450px) { .infor { padding: 30px 10px 30px 20px; } .menu.toggle { top: 0px; right: 0px; } }
         @media only screen and (max-width: 400px) { .intro { height: min-content; } }
@@ -174,7 +192,7 @@
                 <a id="MSdetails" href="#Ldetails"><ion-icon name="newspaper-outline"></ion-icon> Brief Info</a>
                 <a id="MSgame" href="#playGame"><ion-icon name="game-controller-outline"></ion-icon> Play the Game!</a>
                 <a id="MSstats" href="#Lcredits"><ion-icon name="ribbon-outline"></ion-icon> Credits</a>
-                <h3 class="theme" id="themeSel" >Theme : Elegant Pastel (L)</h3>
+                <h3 class="theme" id="themeSel" >Theme : Elegant Pastel 🌤</h3>
             </div>
             <div class="sepe"></div>
             <div class="log">
@@ -193,14 +211,14 @@
     </div>
 
     <div class="impre" id="toppa">
-        <picture class="fader-anim" id="picDIV">
+        <picture class="imageDEF" id="picDIV">
             <source type="image/avif" srcset="thumbnailv.avif" title="TAXI Sim 2D" alt="TAXI Sim 2D" />
             <img id="ima" class="defim" src="thumbnailvrb.png" title="TAXI Sim 2D" alt="TAXI Sim 2D">
         </picture>
     </div>
     </div>
 
-    <div>
+    <div class="scroldB">
         <h2 class="scrold" id="skrld">&#8595 Scroll down &#8595</h2>
     </div>
 
@@ -234,7 +252,7 @@
             <a href="#Ldetails" class="det">VIEW IN-DEPTH DETAILS</a>
         </div>
         <div class="image">
-            <h2 style="color: var(--black2); text-shadow: 1px 1px 12px var(--black);">🚖</h2>
+            <h2 style="color: var(--black2); text-shadow: 1px 1px 2px var(--black);">🚖</h2>
         </div>
     </div>
     </div>
@@ -242,6 +260,25 @@
     <div class="reveal">
         <div class="features">
             <h2 style="color: var(--black2);">Why should I play?</h2>
+            <div class="asier">
+                <div class="asierinf">
+                    <h1 style="color: var(--black2);">🥇</h1>
+                    <h2 style="color: var(--black2);">Secured 1st Place in Game Designing / Dev Competition!</h2>
+                    <p2 style="color: var(--black2);">State level - GOA | Amongst 12 Entries</p2>
+                    <i style="color: var(--black2);">ASIER GAME ON - Game Designing Competition</i>
+                </div>
+                <div class="asierlog">
+                    <h2 style="color: var(--black2);">Competition Hosted by : </h2>
+                    <a href="http://asiersolutions.com/" target="blank" rel="norefferer" id="asierLogo">
+                        <picture>
+                            <source type="image/avif" srcset="asierLog.avif" title="Asier Solutions Logo" alt="Asier Solutions" />
+                            <img id="asierLogo" src="asierLog.png" title="Asier Solutions Logo" alt="Asier Solutions Logo">
+                        </picture>
+                    </a>
+                    <br><br><br>
+                    <i style="color: var(--black2);">Registered Trademark <br> Logo & respective rights belong to ASIER SOLUTIONS.</i>
+                </div>
+            </div>
             <div class="cards">
                 <div class="card">
                     <h2><ion-icon name="reorder-four-outline"></ion-icon></h2>
@@ -413,17 +450,21 @@
             <h2>2D</h2>
         </div>
         <div style="text-align: center;">
+            <p>Latest update : 28 Dec 2021</p>
+
             <p style="font-size: 2vh;">Website, Game, designed and developed by : <br> <a href="https://daksh-naik.github.io/Profile/" target="_blank" rel="noopener noreferrer" style="font-size: 2vh;">Daksh N</a></p>
             <p style="font-size: 2vh;" >Site hosted by : Github Pages</p>
         </div>
     </div>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>   
-
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
         window.onload = () => {
             document.getElementById("loadFer").classList.add('active');
+            setTimeout(function(){
+                document.getElementById("picDIV").classList.add('active');
+            }, 500)
             setTimeout(function () {
                 ima.style.top = "0px";
                 sidnav.style.left = "0px";
@@ -451,7 +492,7 @@
         selecTheme.onclick = () => {
             if (!dark) {
                 dark = true;
-                selecTheme.innerHTML = "Theme : Dark Raven (D)";
+                selecTheme.innerHTML = "Theme : Dark Raven 🌇";
                 selR.style.setProperty('--bg', 'black');
                 selR.style.setProperty('--taxiYellow', 'rgb(253, 240, 1)');
                 selR.style.setProperty('--orange', 'rgb(255, 153, 0)');
@@ -463,7 +504,7 @@
                 selR.style.setProperty('--black2', 'rgb(255, 255, 255)');
             } else if (dark) {
                 dark = false;
-                selecTheme.innerHTML = "Theme : Elegant Pastel (L)";
+                selecTheme.innerHTML = "Theme : Elegant Pastel 🌤";
                 selR.style.setProperty('--bg', 'rgb(240, 236, 227)');
                 selR.style.setProperty('--taxiYellow', 'rgb(252, 255, 166)');
                 selR.style.setProperty('--orange', 'rgb(195, 117, 0)');
