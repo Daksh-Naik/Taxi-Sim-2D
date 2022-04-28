@@ -9,13 +9,13 @@
     --bg : rgb(240, 236, 227);
     --black2 : rgb(65, 68, 75);
     --introd : rgb(230, 230, 230);
+    --bgElem : rgba(230, 230, 230, 0.7);
 }
-*{ padding: 0; margin: 0; box-sizing: border-box; font-family: 'Trebuchet MS'; transition: ease-out 0.3s; user-select: none; }
-body { background-color: var(--bg); }
-html { scroll-behavior: smooth; }
+*{ padding: 0; margin: 0; box-sizing: border-box; transition: ease-out 0.3s; user-select: none; }
+body { background-color: var(--bg); font-family: 'Montserrat', sans-serif; } html { scroll-behavior: smooth; }
 p, a { font-size: 20px; } p:not(overlay-menubut) { padding: 20px 5px 20px 5px; }
 a { color : var(--orange); padding: 1px 5px 1px 5px; text-decoration: none; font-weight: 900; }
-a:hover { color: var(--black2); text-decoration: 1px underline var(--orange) solid; }
+a:hover { color: var(--black2); text-decoration: 1px underline var(--orange) solid; cursor: alias; }
 .scrold { padding: 20px 0px 10px 0px; position: relative; bottom: -100px; transition: 0.5s; text-align: center; color: white;
     text-shadow: 1px 1px 12px rgba(0, 0, 0, 0.733); }
 .note { color: var(--orange); } .noteD { color: var(--maroon); }
@@ -28,6 +28,9 @@ a:hover { color: var(--black2); text-decoration: 1px underline var(--orange) sol
 .impre { display: flex; justify-content: center; align-items: center; height: 100vh; }
 .defim { width:max-content; margin: 60px 0px 0px 0px; position: relative; top: -1000px; transition: 0.5s ease-out; z-index: -1; 
     border-radius: 0px 10vh 10vh 10vh; }
+
+.taxiF { position: fixed; top: 10vh; left: 10vw; z-index: 0; overflow: hidden; } .taxiF .taxiFh1 { font-size: calc(25vh); color: var(--black2); opacity: 0; }
+.taxiF .first { opacity: 0.4; } .taxiF .second { opacity: 0; }
 
 ::-webkit-scrollbar { width: 20px; background-color: black; transition: 0.5s; }
 ::-webkit-scrollbar-track { background: black; }
@@ -58,7 +61,7 @@ a:hover { color: var(--black2); text-decoration: 1px underline var(--orange) sol
 .cont .inLinks .theme { cursor: pointer; font-size: 3vh; font-weight: 900; color: black; background-color: var(--hotpink); padding: 10px 20px; border-radius: 10px 10px; box-shadow: 1px 1px 15px black; }
 .cont .inLinks .theme:hover { background-color: var(--black); color: var(--hotpink); }
 .cont .sepe { width: 2px; height: 70vh; background-color: black; margin: 0px 10px 0px 10px; opacity: 0.3; }
-.cont .log { display: flex; justify-content: center; align-items: center; flex-direction: column; 
+.cont .log { display: flex; justify-content: center; align-items: center; flex-direction: column; font-family: 'Trebuchet MS';
    padding: 10vh; text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3); opacity: 0.4; font-size: 12vh; }
 .cont .log h2 { opacity: 0.6; }
 .cont .log h2:nth-child(1) { color: var(--taxiYellow); } .cont .log h2:nth-child(1):hover { opacity: 1; }
@@ -75,15 +78,17 @@ a:hover { color: var(--black2); text-decoration: 1px underline var(--orange) sol
 .ts2d:hover { padding: 20px 40px 40px 20px; border-radius: 0% 0% 100% 0%; font-size: 2vh; }
 .ts2d:hover h1 { transform: rotate(349deg); transition-delay: 0.2s; }
 .taxisim2d { color: var(--skyblue); background-color: var(--black); padding: 10px 20px; } .taxisim2d::before { content: 'Taxi '; color: var(--taxiYellow); } .taxisim2d::after { content: ' 2D'; color: var(--hotpink); }
+
 .sidenav { transition: 0.3s; z-index: 100; position: fixed; left:-50px;  height: 100%; display: flex;  flex-direction: column; 
     justify-content: center; align-items: baseline; color: var(--black2); }
 .sidenav a { text-decoration: none; color: var(--black2); background-color: rgba(0, 0, 0, 0.3); border-radius: 0px 5px 5px 0px; padding: 5px 5px 5px 5px;  }
 .sidenav a .tooltiptext { visibility: hidden; font-size: 0px; text-shadow: 1px 1px 15px black; color: var(--white); border-radius: 6px;
     position: relative; z-index: 1; top: -5px; left: 120%; transition: 0.3s; }
 .sidenav span { color: var(--skyblue); padding: 0px; margin: 0px; background-color: rgba(0, 0, 0, 0.500); }
-.sidenav a:hover { color: var(--skyblue); background-color: rgba(29, 29, 29, 0.8); }
+.sidenav a:hover { color: var(--skyblue); background-color: rgba(29, 29, 29, 0.8); cursor: pointer; }
 .sidenav a:hover .tooltiptext { visibility: visible; font-size: 19px; padding: 10px; }
 .sidenav ion-icon { font-size: 35px; color: var(--white); }
+
 .reveal{position: relative; opacity: 0; transition: all 0.7s ease; z-index: 50;}
 .reveal.active{ opacity: 1; }
 .code:not(code) { font-family: 'Trebuchet MS'; padding: 30px; font-size: 40px; font-weight: 900; transition: 0.3s;}
