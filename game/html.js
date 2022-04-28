@@ -27,6 +27,9 @@ class HTMLPSCHARS {
         this.turvy = createElement('h3');
         this.droppa = createElement('h3');
         this.ccrash = createElement('h3');
+        this.cc = createElement('h3');
+        this.ccf = createElement('h2');
+        this.caution = createElement('h2');
 
         this.status = createElement('h2');
         this.loc = createElement('h2');
@@ -50,7 +53,7 @@ class HTMLPSCHARS {
         this.title.html("Taxi Sim 2D");
         this.title.style('background-color', 'black');
         this.title.style('border-radius', '10px');
-        this.title.style('padding', '20px');
+        this.title.style('padding', '5px');
         this.title.style('margin', '1px');
         this.title.style('z-index', '5');
         this.title.id("Title");
@@ -156,6 +159,21 @@ class HTMLPSCHARS {
         this.ttD.position(920, 510);
         this.ttD.html("⌚ Driving for : "+totaltimeD+" s");
 
+        this.cc.position(0, 350);
+        this.cc.html(" CC ");
+        this.cc.style('border-radius', '0.5vh');
+
+        this.ccf.position(780, 410);
+        this.ccf.html("©");
+        this.ccf.style('color', 'limegreen');
+        this.ccf.style('opacity', '0.1');
+
+        this.caution.position(taxi.x+40, 480);
+        this.caution.html("⚠");
+        this.caution.style('color', 'red');
+        this.caution.style('font-size', '5vh');
+        this.caution.style('opacity', '0.02');
+
     }
 
     showBoundar() {
@@ -228,7 +246,7 @@ class HTMLPSCHARS {
     FareCompo() {
         this.dropOff.position(800, 170);
         this.dropOff.html("");
-        this.dropOff.style('width', '350px');
+        this.dropOff.style('width', '380px');
         this.dropOff.style('opacity', '1');
 
         this.distanceDestina.position(800, 200);
@@ -294,6 +312,7 @@ class HTMLPSCHARS {
         this.droppa.hide(); 
         this.turvy.hide();
         this.dash.hide();
+        this.cc.hide();
     }
 
     gameDue() {
