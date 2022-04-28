@@ -26,10 +26,12 @@
     <script src="p5.play.js"></script>
     <script src="p5.dom.min.js"></script>
 
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');</style>
+
     <title>Taxi Sim 2D</title>
 
     <style type="text/css">
-         #DashboardBackground { background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, #000000 80%) }
+        #DashboardBackground { background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000000 80%) }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
         ::-webkit-scrollbar-thumb { background: yellow; }
@@ -41,13 +43,14 @@
         .introdSM h2:nth-child(2) { color: rgb(113, 225, 249); }
         .introdSM h2:nth-child(3) { color: rgb(255, 0, 72); }
         *{ font-variant-numeric: tabular-nums; padding: 0; margin: 0; box-sizing: border-box; color: white; 
-            font-family: 'Trebuchet MS'; transition: 0.3s ease; user-select: none;}
+            font-family: 'Montserrat', sans-serif; transition: 0.3s ease; user-select: none;}
         body { overflow-y: hidden;  background-color: black; overflow-x: hidden; } html { scroll-behavior: smooth;}
         h1, h3, h4 { text-align: center; transition: 0.3s ease; padding: 10px; background-color: rgba(0, 0, 0, 0.5); 
             text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);}
         #Title { box-shadow: inset -12px -4px 20px 2px rgb(255 255 255 / 10%)}
-        .context { z-index: 50; display: flex; justify-content: space-evenly; align-items: center; text-align: center;
-            height: 100vh; width: 100vw; position: fixed; background-color: rgba(0, 0, 0, 0.8); opacity: 0; }
+
+        .context { z-index: 50; display: flex; justify-content: space-evenly; align-items: center; text-align: center; top: -100vh;
+            height: 100vh; width: 100vw; position: fixed; background-color: rgba(0, 0, 0, 0.8); opacity: 0; overflow: hidden; }
         .context .active { opacity: 1; }
         kbd { background-color: rgb(0, 0, 0); padding: 1px 10px 2px 10px; margin: 0px 5px 0px 5px;
             border: 1px rgb(122, 122, 122) solid; border-style: inset; }
@@ -57,18 +60,29 @@
             color: white; background-color: rgba(0, 0, 0, 0.5); padding: 20px; }
         .context .controls .sec { margin: 10px 0px 10px 0px; }
         .context .map { padding: 20px;  background-color: rgba(0, 0, 0, 0.5); border-left: 1px rgba(255, 255, 255, 0.4) solid; }
+
         .helpbar {  z-index: 60; position: fixed; display: flex; justify-content: center; align-items: center; text-align: center;
-            height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.9); opacity: 0; }
+            height: 100vh; width: 100vw; background-color: rgba(0, 0, 0, 0.9); opacity: 0; overflow: hidden; top: -100vh; }
         .helpbar p { margin: 20px 10px 20px 10px; } .helpbar strong { color: rgb(255, 196, 86); }
         .helpbar .help { flex: 60; padding: 20px; border-right: 1px rgba(163, 72, 72, 0.4) solid;
-            box-shadow: inset 0px -20px 20px 0px rgb(255 255 255 / 10%); height: 75vh; overflow-y: scroll; }
-        .helpbar .steps { height: 75vh; flex: 50; padding: 30px; box-shadow: inset 0px -20px 20px 0px rgb(255 255 255 / 10%); overflow-y:scroll; }
+            box-shadow: inset 0px -20px 20px 0px rgba(94, 94, 94, 0.9); height: 80vh; overflow-y: scroll; }
+        .helpbar .steps { height: 80vh; flex: 50; padding: 30px; box-shadow: inset 0px -20px 20px 0px rgba(255, 255, 255, 0.1); 
+            overflow-y:scroll; }
+
+        .helpbarmini { width: 50vw; height: 10vh; background-color: rgba(40, 40, 40, 0.5); color: black; border-radius: 0% 100% 0% 0%;
+            position: fixed; top: 90vh; left: 0px; display: flex; justify-content: center; align-items: center; overflow: hidden; z-index: 20; }
+        .helpbarmini .helpbarclose { position: fixed; top: 92vh; left: 47vw; color: white; opacity: 0; cursor: pointer; font-size: 3vh; z-index: 21; } 
+        .helpbarmini:hover .helpbarclose { opacity: 1; } .helpbarmini .helpcontent { overflow: hidden; display: inline-block; white-space: nowrap; } 
+        .helpbarmini .helpcontent span { color: rgb(255, 255, 255); display: inline-block; animation: scroll 60s linear infinite; }
+        @keyframes scroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
         .loader { position: fixed; z-index: 1000; display: flex; justify-content: center; align-items: center;
             height: 100vh; width: 100vw; background-color: black; }
         .loader::after { content: 'Loading..'; position: fixed; display: flex; justify-content: center; align-items: center;
             height: 100%; font-size: 100px ; color: rgba(255, 255, 255, 0.2); }
         .loader .line { z-index: 100; height: 50vh; width: 1px; background-color: rgba(255, 255, 255, 0.7); animation: rotateLine 5s infinite; }
         .loader.active { opacity: 0; }
+    
         #Pauser { backdrop-filter: blur(5px); }
         @keyframes rotateLine { 0% { transform: rotate(0deg); } 10% { transform: rotate(45deg); } 20% { transform: rotate(90deg); }
     30% { transform: rotate(135deg); } 40% { transform: rotate(180deg); } 50% { transform: rotate(360deg); } 60% { transform: rotate(180deg); }
@@ -88,7 +102,6 @@
         .large { display: block; position: absolute; padding: 40px; z-index: 100; font-size: 5vh; color: white; }
     }
 
-
     </style>
 </head>
 <body>
@@ -99,7 +112,7 @@
     <div class="loading" id="p5_loading">
         <div class="loader" id="loadFer">
             <div class="line"></div>
-            <h2 style="position: fixed; bottom: 25vh; color: rgba(255, 255, 255, 0.5);">This usually takes about 15 seconds...</h2>
+            <h2 style="position: fixed; bottom: 25vh; color: rgba(255, 255, 255, 0.5);">This usually takes about 30 seconds...</h2>
         </div>
     </div>
 
@@ -130,23 +143,25 @@
                 <h4>Arrow keys to move.</h4>
                 <p><kbd>Y</kbd> to Accept Fare <br> (When touching Circle Trigger)</p>
                 <p><kbd>Z</kbd> to Flip Canvas <br> (Head in the opposite direction)</p>
+                <p><kbd>C</kbd> to turn ON / OFF Cruise Control <br> (at ordinate speeds)</p>
                 <p><kbd>X</kbd> to turn on No Collision <br>(Cheat Key, try it out!)</p>
             </div>
         </div>
         <div class="map">
             <h2>MAP</h2>
             <h4>Facing ⇧ direction</h4>
-            <defMap>Bernard Avenue (BAV)</defMap>
+            <defMap id="DFMPBAV">Bernard Avenue (BAV)</defMap>
             <p>↑</p>
-            <defMap>Parkvillia (PRKV)</defMap>
+            <defMap id="DFMPPRKV">Parkvillia (PRKV)</defMap>
             <p>↑</p>
-            <p>(Interstate E52 Highway)</p>
-            <defMap>Warkhandem (WRKD)</defMap>
+            <p id="DFMPE52">(Interstate E52 Highway)</p>
+            <defMap id="DFMPWRKD">Warkhandem (WRKD)</defMap>
             <p>↑</p>
-            <p>(Interstate E43 Highway)</p>
-            <defMap>Greensville (GRSV)</defMap>
+            <p id="DFMPE43">(Interstate E43 Highway)</p>
+            <defMap id="DFMPGRSV">Greensville (GRSV)</defMap>
         </div>
     </div>
+
     <div class="helpbar" id="helpB">
         <div class="help">
             <h2>HELP</h2>
@@ -192,6 +207,27 @@
                 wish to play again.</p>
         </div>
     </div>
+
+    <div class="helpbarmini" id="helpbarminiID">
+        <div class="helpbarclose" id="closehelpbarID">✘</div>
+        <div class="helpcontent">
+            <span>Press <kbd>N</kbd> to open Controls & Map and to know where you're currently. ♢ 
+            Press <kbd>H</kbd> to acknowledge crucial information related to this game. ♢ 
+            Keep on driving to encounter fares on foothpaths. ♢ Accept short-distance fares first. ♢
+            Keep your speed below <strong>25 PX/s</strong> to feel more safer and confident on the road. ♢
+            Press <kbd>Z</kbd> to flip canvas and head to the opposite direction. ♢
+            Press <kbd>C</kbd> to turn ON / OFF Cruise Control. ♢
+            Don't panic. ♢ </span>
+            <span>
+            Press <kbd>N</kbd> to open Controls & Map and to know where you're currently. ♢ 
+            Press <kbd>H</kbd> to acknowledge crucial information related to this game. ♢
+            Keep on driving to encounter fares on foothpaths. ♢ Accept short-distance fares first. ♢
+            Keep your speed below <strong>25 PX/s</strong> to feel more safer and confident on the road. ♢
+            Press <kbd>Z</kbd> to flip canvas and head to the opposite direction. ♢
+            Press <kbd>C</kbd> to turn ON / OFF Cruise Control. ♢
+            Don't panic. ♢ </span>
+        </div>
+    </div>
     
     <h5 class="large" id="large">Press <kbd>CTRL</kbd> + <kbd>+</kbd> to Zoom in.</h5>
 
@@ -202,6 +238,15 @@
         setTimeout(function(){
             document.getElementById("large").remove();
         }, 8000)
+    </script>
+
+    <script>
+        var Closesel = document.getElementById("closehelpbarID");
+        var helpbarSel = document.getElementById("helpbarminiID");
+        Closesel.onclick = () => {
+            helpbarSel.remove();
+        }
+        
     </script>
 
 </body>
