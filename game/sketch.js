@@ -1,13 +1,13 @@
 //TAXI SIM 2D P5 - A WEB BROWSER GAME - SKETCH FILE
-// LAST EDIT : 21 DEC 2021
+// LAST EDIT : 29 NOV 2021
 p5.disableFriendlyErrors = true;
 
 var taxi, taxiImage, taxiCFImage, speed, menu = false, help = false;
-var dash, markD = 0, endS, aPn = 0;
+var dash, markD = 0, endS, aPn = 0, Taxisens, TaxisensCL;
 var Greensville, Parkvillia, BernardAvenue, Stratum;
 var Warkhandem;
 var htmlps;
-var spawnPeds = true, spawnFPeds = true, spawnTraf = true, pedBR, pedBR2;
+var spawnPeds = true, spawnFPeds = true, spawnTraf = true, pedBR, pedBR2, FDestinaSE;
 var PTraffic, OTraffic, TrafficGroup, OTrafficGroup;
 var PedGBgr, PedGB1, PedGB2;
 var destinaIm;
@@ -16,6 +16,7 @@ var upar, rightar, uparimage, rightarimage;
 var nav1e43image, nav1e43, nav1e43intimage, nav1e43int, nav2e52image, nav2e52intimage, nav2e52int;
 var fareMis = false, cCrash = true;
 var CF = false;
+var cc = false;
 
 var iPaths = [], frontGRL, backGRL, backBlock, inviBar;
 var allLanes = [];
@@ -296,6 +297,12 @@ function setup() {
     BRAVparkway.visible = false;
     Fdestinas.push(BRAVparkway);
 
+    Taxisens = createSprite(0, 0, 50, 450);
+    Taxisens.visible = false;
+
+    TaxisensCL = createSprite(0, 0, 50, 100);
+    TaxisensCL.visible = false;
+
     pedsRGroup = new Group();
     pedsFGroup = new Group();
 
@@ -332,7 +339,7 @@ function draw() {
     background(185, 122, 87);
 
     if (keyWentDown("N") && !menu) {
-        menu = true
+        menu = true;
     } else if (keyWentDown("N") && menu) {
         menu = false;
     }
@@ -350,8 +357,10 @@ function draw() {
 
     if (menu) {
         document.getElementById("cont").style.opacity = 1;
+        document.getElementById("cont").style.top = "0vh";
     } else if (!menu) {
-        document.getElementById("cont").style.opacity = 0;    
+        document.getElementById("cont").style.opacity = 0;
+        document.getElementById("cont").style.top = "-100vh";    
     }
     if (menu && gameState === Play) {
         gameState = Pause;
@@ -359,15 +368,17 @@ function draw() {
 
     if (help) {
         document.getElementById('helpB').style.opacity = 1;
+        document.getElementById('helpB').style.top = "0vh";
     } else if (!help) {
-        document.getElementById('helpB').style.opacity = 0;    
+        document.getElementById('helpB').style.opacity = 0;
+        document.getElementById('helpB').style.top = "100vh";    
     }
 
     if (help && gameState === Play) {
         gameState = Pause;
     }
 
-    camera.position.x = width / 2;
+    camera.position.x = width/2;
     camera.position.y = taxi.y - 240;
 
     frontGRL.y = taxi.y - 75;
@@ -425,14 +436,14 @@ function draw() {
     image(backgroundcitiesR9, width / 2 + 50, -116280, 392, 4520);
     image(backgroundcitiesR10, width / 2 + 50, -120800, 392, 4520);
 
-    image(treeG1, width / 2 + 70, -31000, 100, 7500);
-    image(treeG2, -20, -31700, 100, 7500);
-    image(treeG3, width / 2 +70, -38500, 100, 7500);
-    image(treeG4, -20, -39500, 100, 7500);
-    image(treeG5, -20, -61500, 100, 7500);
-    image(treeG6, width / 2 + 70, -65500, 100, 7500);
-    image(treeG7, -20, -75000, 100, 7500);
-    image(treeG8, width / 2 + 70, -76000, 100, 7500);
+    image(treeG1, width / 2 + 70, -31000, 200, 7500);
+    image(treeG2, -50, -31700, 200, 7500);
+    image(treeG3, width / 2 +70, -38500, 200, 7500);
+    image(treeG4, -50, -39500, 200, 7500);
+    image(treeG5, -50, -61500, 200, 7500);
+    image(treeG6, width / 2 + 70, -65500, 200, 7500);
+    image(treeG7, -50, -75000, 200, 7500);
+    image(treeG8, width / 2 + 70, -76000, 200, 7500);
 
 
     if (keyDown("E") && gameState === Start) {
@@ -466,16 +477,33 @@ function draw() {
         }
 
         if (CF) {
-            OTrafficGroup.collide(frontGRL);   
+            OTrafficGroup.collide(frontGRL);
         }
         if (CF && taxi.x < 420 && speed <= 0) {
             TrafficGroup.collide(backGRL);
         }
 
+        if (keyWentDown("C") && !cc && speed > 3) {
+            cc = true;
+        } else if (keyWentDown("C") && cc) {
+            cc = false;
+        } else if (cc && speed < 3) {
+            cc = false;
+        }
+
+        if (cc) {
+            htmlps.cc.style('color', 'rgb(73, 255, 56)');
+            htmlps.cc.style('opacity', '1');   
+            htmlps.ccf.style('opacity', '1');
+        } else if (!cc) {
+            htmlps.cc.style('color', 'rgb(255, 118, 64)');
+            htmlps.cc.style('opacity', '0.2');
+            htmlps.ccf.style('opacity', '0.1');
+        }
+
         if (!CF) {
             speed = Math.round(taxi.velocityY - taxi.velocityY - taxi.velocityY);
 
-            camera.position.x = width / 2;
             camera.position.y = taxi.y - 240;
 
             if (speed < 0) {
@@ -483,6 +511,11 @@ function draw() {
             } else {
                 camera.position.y = taxi.y - 240;
             }
+
+            Taxisens.x = taxi.x;
+            Taxisens.y = taxi.y-280;
+            TaxisensCL.x = taxi.x;
+            TaxisensCL.y = taxi.y-120;
 
             taxi.addImage(taxiImage);
 
@@ -507,6 +540,12 @@ function draw() {
                 taxi.velocityY = taxi.velocityY - 0.009;
             } else if (keyDown("DOWN_ARROW") && speed >= 1) {
                 taxi.velocityY = taxi.velocityY + 1;
+            }
+
+            if (speed > 5) {
+                htmlps.cc.style('opacity', '0.7');
+            } else {
+                htmlps.cc.style('opacity', '0.2');
             }
 
             if (keyDown(LEFT_ARROW) && speed > 0 && taxi.velocityX > -2) {
@@ -541,7 +580,7 @@ function draw() {
                 taxi.rotation = -1;
             }
 
-            if (!keyDown("UP_ARROW") && speed >= -2) {
+            if (!keyDown("UP_ARROW") && speed >= -2 && !cc) {
                 taxi.velocityY = taxi.velocityY + 0.09;
             }
 
@@ -560,6 +599,13 @@ function draw() {
             } else {
                 camera.position.y = taxi.y + 240;
             }
+
+            Taxisens.x = taxi.x;
+            Taxisens.y = taxi.y+280;
+            TaxisensCL.x = taxi.x;
+            TaxisensCL.y = taxi.y+120;
+
+            htmlps.caution.position(taxi.x-60, 50);
 
             taxi.addImage(taxiCFImage);
 
@@ -618,7 +664,7 @@ function draw() {
                 taxi.rotation = 1;
             }
 
-            if (!keyDown("UP_ARROW") && speed >= -2) {
+            if (!keyDown("UP_ARROW") && speed >= -2 && !cc) {
                 taxi.velocityY = taxi.velocityY - 0.09;
             }
 
@@ -678,26 +724,57 @@ function draw() {
         if (taxi.isTouching(Greensville)) {
             htmlps.loc.html("In : Greensville");
             htmlps.loc.position(1000, 350);
-        }
-        if (taxi.isTouching(Warkhandem)) {
+            document.getElementById("DFMPGRSV").innerHTML = "Greensville (GRSV) 🚕";
+            document.getElementById("DFMPWRKD").innerHTML = "Warkhandem (WRKD)";
+            document.getElementById("DFMPPRKV").innerHTML = "Parkvillia (PRKV)";
+            document.getElementById("DFMPBAV").innerHTML = "Bernard Avenue (BAV)";
+            document.getElementById("DFMPE43").innerHTML = "(Interstate E43 Highway)";
+            document.getElementById("DFMPE52").innerHTML = "(Interstate E52 Highway)";
+        } else  if (taxi.isTouching(Warkhandem)) {
             htmlps.loc.html("In : Warkhandem");
             htmlps.loc.position(1000, 350);
-        }
-        if (taxi.isTouching(Parkvillia)) {
+            document.getElementById("DFMPGRSV").innerHTML = "Greensville (GRSV)";
+            document.getElementById("DFMPWRKD").innerHTML = "Warkhandem (WRKD) 🚕";
+            document.getElementById("DFMPPRKV").innerHTML = "Parkvillia (PRKV)";
+            document.getElementById("DFMPBAV").innerHTML = "Bernard Avenue (BAV)";
+            document.getElementById("DFMPE43").innerHTML = "(Interstate E43 Highway)";
+            document.getElementById("DFMPE52").innerHTML = "(Interstate E52 Highway)";
+        } else if (taxi.isTouching(Parkvillia)) {
             htmlps.loc.html("In : Parkvillia");
             htmlps.loc.position(1000, 350);
-        }
-        if (taxi.isTouching(BernardAvenue)) {
+            document.getElementById("DFMPPRKV").innerHTML = "Parkvillia (PRKV) 🚕";
+            document.getElementById("DFMPGRSV").innerHTML = "Greensville (GRSV)";
+            document.getElementById("DFMPWRKD").innerHTML = "Warkhandem (WRKD)";
+            document.getElementById("DFMPBAV").innerHTML = "Bernard Avenue (BAV)";
+            document.getElementById("DFMPE43").innerHTML = "(Interstate E43 Highway)";
+            document.getElementById("DFMPE52").innerHTML = "(Interstate E52 Highway)";
+        } else if (taxi.isTouching(BernardAvenue)) {
             htmlps.loc.html("In : Bernard Avenue");
             htmlps.loc.position(970, 350);
-        }
-        if (taxi.isTouching(eArea1)) {
+            document.getElementById("DFMPBAV").innerHTML = "Bernard Avenue (BAV) 🚕";
+            document.getElementById("DFMPGRSV").innerHTML = "Greensville (GRSV)";
+            document.getElementById("DFMPWRKD").innerHTML = "Warkhandem (WRKD)";
+            document.getElementById("DFMPPRKV").innerHTML = "Parkvillia (PRKV)";
+            document.getElementById("DFMPE43").innerHTML = "(Interstate E43 Highway)";
+            document.getElementById("DFMPE52").innerHTML = "(Interstate E52 Highway)";
+        } else if (taxi.isTouching(eArea1)) {
             htmlps.loc.html("In : Interstate E34");
             htmlps.loc.position(990, 350);
-        }
-        if (taxi.isTouching(eArea2) || taxi.y < -57149 && taxi.y > -74000) {
+            document.getElementById("DFMPE43").innerHTML = "(Interstate E43 Highway) 🚕";
+            document.getElementById("DFMPGRSV").innerHTML = "Greensville (GRSV)";
+            document.getElementById("DFMPWRKD").innerHTML = "Warkhandem (WRKD)";
+            document.getElementById("DFMPPRKV").innerHTML = "Parkvillia (PRKV)";
+            document.getElementById("DFMPBAV").innerHTML = "Bernard Avenue (BAV)";
+            document.getElementById("DFMPE52").innerHTML = "(Interstate E52 Highway)";
+        } else if (taxi.isTouching(eArea2) || taxi.y < -57149 && taxi.y > -74000) {
             htmlps.loc.html("In : Intestate E52");
             htmlps.loc.position(990, 350);
+            document.getElementById("DFMPE52").innerHTML = "(Interstate E52 Highway) 🚕";
+            document.getElementById("DFMPGRSV").innerHTML = "Greensville (GRSV)";
+            document.getElementById("DFMPWRKD").innerHTML = "Warkhandem (WRKD)";
+            document.getElementById("DFMPPRKV").innerHTML = "Parkvillia (PRKV)";
+            document.getElementById("DFMPBAV").innerHTML = "Bernard Avenue (BAV)";
+            document.getElementById("DFMPE43").innerHTML = "(Interstate E43 Highway)";
         }
 
         if (fareMis) {
@@ -1216,7 +1293,6 @@ function draw() {
 
         if (fareMis && gameState === Play) {
             htmlps.topsy.style('opacity', '1');
-            htmlps.turvy.style('opacity', '1');
         } else if (!fareMis) {
             htmlps.topsy.style('opacity', '0');
             htmlps.droppa.style('opacity', '0');
@@ -1226,28 +1302,23 @@ function draw() {
         if (fareMis) {
             if (WRKDfPedbazaarFA) {
                 if (gameState === Play && fareMis) {
-                    var FDestina4 = Fdestinas[4].y - Fdestinas[4].y - Fdestinas[4].y + taxi.y;
-                    if (FDestina4 < 4000) {
+                    var FDestinaSE = Fdestinas[4].y - Fdestinas[4].y - Fdestinas[4].y + taxi.y;
+                    if (FDestinaSE < 4000) {
                         htmlps.distanceDestina.style('color', 'palegreen');
                     }
-                    if (FDestina4 > 0) {
+                    if (FDestinaSE > 0) {
                         htmlps.topsy.html(" ↑ ");
                         htmlps.turvy.style('opacity', '0')
-                    } else if (FDestina4 < 0) {
+                    } else if (FDestinaSE < 0) {
                         htmlps.topsy.html(" ↓ ");
                         htmlps.topsy.style('color', 'rgb(255, 162, 0)');
+                    } else if (FDestinaSE > 0 && !CF) {
                         htmlps.turvy.style('opacity', '1');
-                    }  else if (FDestina4 > 0 && !CF) {
-                        htmlps.turvy.style('opacity', '0');
-                    } else if (FDestina4 > 0 && CF) {
-                        htmlps.turvy.style('opacity', '1');
-                    } else if (FDestina4 < 0 && !CF) {
-                        htmlps.turvy.style('opacity', '1');
-                    } else if (FDestina4 < 0 && CF) {
+                    } else if (FDestinaSE > 0 && CF) {
                         htmlps.turvy.style('opacity', '0');
                     }
-                
-                    if (FDestina4 < 1000 || FDestina4 < -750) {
+
+                    if (FDestinaSE < 1000 || FDestinaSE < -750) {
                         htmlps.droppa.style('opacity', '1')
                     } else {
                         htmlps.droppa.style('opacity', '0');
@@ -1255,9 +1326,9 @@ function draw() {
                     htmlps.guide.html("ⓘ Drop the fare by Warkhandem Bazaar. Make sure you arrive in time.");
                     htmlps.dropOff.html("Destination : Bazaar in Warkhandem.");
                     htmlps.dropOff.style('opacity', '1');
-                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestina4)+" PX");
+                    htmlps.distanceDestina.html("Distance left : " + Math.round(FDestinaSE)+" PX");
                     htmlps.distanceDestina.style('opacity', '1');
-                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestina4) + " PX");
+                    htmlps.distanceDestinaEa.html("📏 " + Math.round(FDestinaSE) + " PX");
                     htmlps.guide.style('white-space', 'break-space')
                 }
 
@@ -1693,6 +1764,7 @@ function draw() {
             }
 
         }
+
         if (!fareMis) {
             htmlps.dropOff.style('opacity', '0');
             htmlps.distanceDestina.style('opacity', '0');
@@ -1965,6 +2037,14 @@ function draw() {
             OTrafficGroup.add(OTraffic);
         }
 
+        if (Taxisens.isTouching(TrafficGroup) && cCrash) {
+            htmlps.caution.style('opacity', '1');
+        }
+
+        if (TaxisensCL.isTouching(TrafficGroup) && cCrash) {
+            htmlps.caution.style('font-size', '7vh');
+        }
+
         if (time > 60) {
             htmlps.timerE.style('color', 'rgb(110, 255, 148)');
         } 
@@ -2016,6 +2096,13 @@ function draw() {
             var a = Math.round(random(450, 500))
             if (TrafficGroup.get(i).x < 400 && taxi.x < 400 && CF) {
                 TrafficGroup.get(i).velocityY = -1;
+            }
+        }
+
+        for (var i = 0; i < TrafficGroup.length; i++) {
+            if (TrafficGroup.get(i).isTouching(TaxisensCL) && speed <= 0 && taxi.x > 400 && !CF || TrafficGroup.get(i).isTouching(TaxisensCL) && speed <= 0 && taxi.x < 400 && CF) {
+                TrafficGroup.get(i).velocityY = 0;
+                TrafficGroup.collide(TaxisensCL);
             }
         }
 
