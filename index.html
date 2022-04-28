@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="base.css">
 
     <title>Taxi Sim 2D</title>
         
@@ -28,6 +27,8 @@
         
         <meta name="description" content="Taxi Sim 2D P5 : Game Menu - Index | Hosted by Github Pages | Made by Daksh Naik">
 
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');</style>
+
     <style>
         #toppa { overflow: hidden; position: relative; }
         .imageDEF::before {  content: ' '; top: -60vh; left: -45vw; width: 100vw; height: 100vh; background-color: black; position: absolute;
@@ -41,14 +42,14 @@
         .welc .play a { text-decoration: none; background-color: var(--hotpink); padding: 20px 40px 20px 40px; margin: 40px 20px 40px 20px;
             color: black; box-shadow: 1px 1px 15px black; }
         .welc .play a:hover { background-color: black; color: var(--hotpink); border-radius: 10px 10px 10px 10px }
-        .welc .read a { text-decoration: none; background-color: var(--black); color: var(--orange); padding: 10px 20px 10px 20px; }
+        .welc .read a { text-decoration: none; background-color: var(--white); color: var(--orange); padding: 10px 20px 10px 20px; cursor: pointer; }
         .welc .read a::after { content: ' ⬇'; position: relative; opacity: 0; top: 0; right: -50px; overflow: hidden; }
-        .welc .read a:hover::after {  opacity: 1; right: 0px; } .welc .read a:hover { background-color: var(--orange); color: var(--black); }
+        .welc .read a:hover::after {  opacity: 1; right: 0px; } .welc .read a:hover { background-color: var(--orange); color: var(--white); }
 
-        .intro { height: 100vh; padding: 20px; display: flex; justify-content: space-around; align-items: center; text-align: center; background-color: var(--bg); }
+        .intro { height: 100vh; padding: 20px; display: flex; justify-content: space-around; align-items: center; text-align: center; background-color: var(--bgElem); }
         .intro .text { flex: 60; display: flex; justify-content: center; flex-direction: column; align-items: center; color: var(--black2);}
         .intro .text .det { margin: 30px 0px 0px 0px; padding: 30px 30px 30px 30px; box-shadow: 1px 1px 15px rgba(255, 255, 255, 0.1); 
-            background-color: var(--hotpink); color: black; width: max-content; border-radius: 10%; overflow: hidden; }
+            background-color: var(--hotpink); color: black; width: max-content; border-radius: 10%; overflow: hidden; cursor: pointer; }
         .intro .text .det::after { content: " ⇩"; opacity: 0;  }
         .intro .text .det:hover { text-decoration: none; background-color: rgba(0, 0, 0, 0.500); color: white; }
         .intro .text:hover .det::after { content: " ⇩"; opacity: 1; position: relative; right: 0px; }
@@ -62,14 +63,14 @@
         .features .cards .card h2 { color: var(--orange); border-radius: 100%; border: 1px var(--orange) solid; padding: 30px; }
         .features ion-icon { color: var(--black2); }
         .features .asier { display: flex; justify-content: space-evenly; align-items: center; height: 100vh; border-radius: 40% / 20%;  
-           background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bg) 40%); }
+           background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bgElem) 40%); }
         .features .asier h2 h3 p2 p { color: var(--black2); }
         .features .asier .asierinf { padding: 1vw; display: flex; justify-content: space-evenly; align-items: center; flex-direction: column;
             height: 70vh; }
         .features .asier .asierinf h1 { font-size: 20vh; } .features .asierlog { padding: 2vw; }
         .features #asierLogo { width: 20vw; margin: auto; transition: 0.3s; } .features #asierLogo:hover { filter: brightness(1.3)}
 
-        .requ { background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bg) 10%); border-radius: 75%/20%; padding-top: 0.3vh; color: var(--black2); }
+        .requ { background: linear-gradient(to bottom, var(--skyblue) 0%, var(--bgElem) 10%); border-radius: 75%/20%; padding-top: 0.3vh; color: var(--black2); }
         .req { height: 90vh; padding: 30px; display: flex; justify-content: space-evenly; align-items: baseline; text-align: center; }
         .req .card { flex: 30; border-radius: 20px 20px 50px 50px; display: flex; justify-content: center; align-items: center;
             flex-direction: column; padding: 30px 10px 30px 10px; height: max-content; }
@@ -88,13 +89,13 @@
         .playAr h2 { color: black; font-size: 10vh; } .playAr h3 { color: black; } .playAr p { color: black; }
         .playAr .butArea { padding: 10px; color: black; }
         .playAr a { text-decoration: none; color: black; }
-        .playAr .button { background-color: var(--orange); padding: 20px 40px; border-radius: 20px; 
+        .playAr .button { background-color: var(--orange); padding: 20px 40px; border-radius: 20px; text-decoration: none;
             box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.500); font-weight: bold; border: 2px var(--orange) solid; }
         .playAr .button::after { content: ' 🚖'; position: relative; opacity: 0; }
         .playAr .button:hover::after { opacity: 1; }
         .playAr .button::before { content: '🚖 '; position: relative; opacity: 0; }
         .playAr .button:hover::before { opacity: 1; }
-        .playAr .button:hover { background-color: rgba(255, 255, 255, 0.3); font-size: 35px; }
+        .playAr .button:hover { background-color: rgba(255, 255, 255, 0.3); font-size: 35px; cursor: pointer; }
 
         .tips { padding: 20px 250px 20px 50px; color: var(--black2); }
         .tips .text { background-color: rgba(255, 255, 255, 0.03); padding: 20px; }
@@ -112,7 +113,7 @@
         .credits .adv { display: flex; justify-content: space-around; align-items: center; }
         .credits .logo:hover a { color: var(--white); }
 
-        .introdSM { display: none; justify-content: center; align-items: center; height: 100vh; flex-direction: column;}
+        .introdSM { display: none; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: 'Trebuchet MS';}
         .introdSM { font-size: 10vh; }
         .introdSM { text-shadow: 1px 1px 5px var(--black); }
         .introdSM h2:nth-child(1) { color: var(--taxiYellow); }
@@ -126,7 +127,7 @@
         .finale { padding: 3vh 2vw 3vh 2vw; text-align: right; background: linear-gradient(to bottom, var(--orange) 0%, var(--black) 20%);
             color: var(--white); font-style: italic; display: flex; justify-content: space-evenly; align-items: center; height: 100vh; }
         .finale .taxiLog { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-size: 10vh;
-            font-style: normal; }
+            font-style: normal; font-family: 'Trebuchet MS'; }
         .finale .taxiLog h2 { opacity: 0.4; } .finale .taxiLog h2:hover { opacity: 1; }
         .finale .taxiLog h2:nth-child(1) { color: var(--taxiYellow); } 
         .finale .taxiLog h2:nth-child(2) { color: var(--skyblue); }
@@ -502,6 +503,7 @@
                 selR.style.setProperty('--black', 'rgb(0, 0, 0)');
                 selR.style.setProperty('--maroon', 'rgb(94, 25, 0)');
                 selR.style.setProperty('--black2', 'rgb(255, 255, 255)');
+                selR.style.setProperty('--bgElem', 'rgba(0, 0, 0, 0.8)')
             } else if (dark) {
                 dark = false;
                 selecTheme.innerHTML = "Theme : Elegant Pastel 🌤";
@@ -513,7 +515,8 @@
                 selR.style.setProperty('--hotpink', 'rgb(255, 187, 204)');
                 selR.style.setProperty('--black', 'rgb(65, 68, 75)');
                 selR.style.setProperty('--maroon', 'rgb(94, 25, 0)');
-                selR.style.setProperty('--black2', 'rgb(65, 68, 75)')
+                selR.style.setProperty('--black2', 'rgb(65, 68, 75)');
+                selR.style.setProperty('--bgElem', 'rgba(230, 230, 230, 0.8)');
             }
         }
 
@@ -528,6 +531,31 @@
         document.getElementById("menucontent").onclick = () => {
             menu.classList.remove('active');
         }
+    </script>
+
+    <script>
+        var taxiFOPA = document.querySelector("body > div.scroldB");
+        var taxiFsel = document.querySelector('.taxiFh1');
+        
+        window.addEventListener('scroll', backGRTAXIF);
+
+        function backGRTAXIF() {
+            if (taxiFOPA.getBoundingClientRect().top < 166) {
+                taxiFsel.classList.add('first');
+            } else {
+                taxiFsel.classList.remove('first');
+            }
+        }
+        
+    </script>
+
+    <script>
+        taxiFselec = document.getElementById("taxiBGO");
+            
+        window.addEventListener('scroll', function(){
+            let value = window.scrollY;
+            taxiFselec.style.top = value * 0.08 + 'px'; 
+        })
     </script>
 
     <script type="text/Javascript">
